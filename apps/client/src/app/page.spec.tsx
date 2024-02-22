@@ -8,8 +8,8 @@ async function resolvedComponent(Component: (x: object) => React.ReactNode, prop
    return () => ComponentResolved;
 }
 
-describe('Header test', () => {
-   it('should render all the content', async () => {
+describe('Root Page', () => {
+   it('should render content', async () => {
       const HeaderResolved = await resolvedComponent(Page, {});
       render(<HeaderResolved />);
       expect(screen.getByText('Documentation')).toBeDefined();
