@@ -6,17 +6,14 @@
       "esModuleInterop": true,
       "allowSyntheticDefaultImports": true,
       "strict": true,
+      "allowImportingTsExtensions": true,
       "forceConsistentCasingInFileNames": true,
       "noEmit": true,
       "resolveJsonModule": true,
       "isolatedModules": true,
       "incremental": true,
-      "plugins": [
-         {
-            "name": "next"
-         }
-      ],
-      "types": ["vitest", "node"]
+      "plugins": [{ "name": "next" }],
+      "types": ["node"]
    },
    "include": [
       "**/*.ts",
@@ -25,7 +22,8 @@
       "**/*.jsx",
       "../../apps/client/.next/types/**/*.ts",
       "../../dist/apps/client/.next/types/**/*.ts",
-      "next-env.d.ts"
+      "next-env.d.ts",
+      ".next/types/**/*.ts"
    ],
-   "exclude": ["node_modules", "vitest.config.ts", "**/*.spec.ts", "**/*.test.ts"]
+   "exclude": ["node_modules", "vitest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
 }
