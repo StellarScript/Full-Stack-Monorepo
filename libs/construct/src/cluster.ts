@@ -4,8 +4,8 @@ import type { AsgCapacityProvider, ClusterProps as ClusterConstructProps } from 
 import { Cluster as ClusterConstruct } from 'aws-cdk-lib/aws-ecs';
 
 interface ClusterProps extends Partial<ClusterConstructProps> {
-   asgCapacityProvider?: AsgCapacityProvider;
-   vpc: IVpc;
+   readonly asgCapacityProvider?: AsgCapacityProvider;
+   readonly vpc: IVpc;
 }
 
 export class Cluster extends ClusterConstruct {

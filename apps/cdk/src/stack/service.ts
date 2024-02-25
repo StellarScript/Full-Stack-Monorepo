@@ -41,8 +41,8 @@ export class ServiceStack extends Stack {
 
    public readonly testListener: ApplicationListener;
    public readonly secureListener: ApplicationListener;
-   private readonly blueTargetGroup: ApplicationTargetGroup;
-   private readonly greenTargetGroup: ApplicationTargetGroup;
+   public readonly blueTargetGroup: ApplicationTargetGroup;
+   public readonly greenTargetGroup: ApplicationTargetGroup;
 
    constructor(scope: Stage, id: string, props?: Cdk.StackProps) {
       super(scope, id, props);

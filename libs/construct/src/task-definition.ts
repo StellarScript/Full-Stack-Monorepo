@@ -5,7 +5,7 @@ import { FargateTaskDefinition as TaskDefinition } from 'aws-cdk-lib/aws-ecs';
 import { registerTaskDefinitionDecorator } from './deployment-template/decorators';
 
 interface FargateTaskDefinitionProps extends Partial<TaskDefinitionProps> {
-   family: string;
+   readonly family: string;
 }
 
 @registerTaskDefinitionDecorator()

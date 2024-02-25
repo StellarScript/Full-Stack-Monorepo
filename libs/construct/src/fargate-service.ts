@@ -10,9 +10,9 @@ import {
 import { SubnetType } from 'aws-cdk-lib/aws-ec2';
 
 interface FargateProps extends Partial<FargateServiceProps> {
-   taskDefinition: FargateTaskDefinition;
-   securityGroups: SecurityGroup[];
-   cluster: Cluster;
+   readonly taskDefinition: FargateTaskDefinition;
+   readonly securityGroups: SecurityGroup[];
+   readonly cluster: Cluster;
 }
 
 export class FargateService extends FargateConstruct {

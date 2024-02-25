@@ -6,7 +6,7 @@ import { Parameter } from './parameter';
 import { Arn } from './arn';
 
 interface VpcProps extends Partial<VpcConstructProps> {
-   ipAddresses: IIpAddresses;
+   readonly ipAddresses: IIpAddresses;
 }
 
 export class Vpc extends VpcConstruct {

@@ -7,7 +7,7 @@ import { AutoScalingGroup as AsgConstruct } from 'aws-cdk-lib/aws-autoscaling';
 import { InstanceSize, InstanceClass, InstanceType } from 'aws-cdk-lib/aws-ec2';
 
 interface AsgConstructProps extends Partial<AsgProps> {
-   vpc: IVpc;
+   readonly vpc: IVpc;
 }
 
 class DefaultOptions {

@@ -9,7 +9,7 @@ class DefaultOptions {
 }
 
 interface AsgCapacityProviderProps extends Partial<AsgProps> {
-   autoScalingGroup: AutoScalingGroup;
+   readonly autoScalingGroup: AutoScalingGroup;
 }
 
 export class AsgCapacityProvider extends CapacityProvider {
