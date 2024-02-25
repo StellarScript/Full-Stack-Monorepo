@@ -17,7 +17,7 @@
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
-"@ampproject/remapping@^2.2.0":
+"@ampproject/remapping@^2.2.0", "@ampproject/remapping@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@ampproject/remapping/-/remapping-2.2.1.tgz#99e8e11851128b8702cd57c33684f1d0f260b630"
   integrity sha512-lFMjJTrFL3j7L9yBxwYfCq2k6qqwHyzuUl/XBnif78PWTJYyL/dfowQHWE3sp6U6ZzqWiiIZnpTMO96zhkjwtg==
@@ -327,7 +327,7 @@
     chalk "^2.4.2"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.1.0", "@babel/parser@^7.14.7", "@babel/parser@^7.20.7", "@babel/parser@^7.23.9":
+"@babel/parser@^7.1.0", "@babel/parser@^7.14.7", "@babel/parser@^7.20.7", "@babel/parser@^7.23.6", "@babel/parser@^7.23.9":
   version "7.23.9"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.23.9.tgz#7b903b6149b0f8fa7ad564af646c4c38a77fc44b"
   integrity sha512-9tcKgqKbs3xGJ+NtKF2ndOBBLVwPjl1SHxPQkd36r3Dlirw3xWUeGaTbqr7uGZcTaxkVNwc+03SVP7aCdWrTlA==
@@ -1849,6 +1849,13 @@
   dependencies:
     "@nx/web" "18.0.4"
 
+"@nrwl/web@18.0.5":
+  version "18.0.5"
+  resolved "https://registry.yarnpkg.com/@nrwl/web/-/web-18.0.5.tgz#d21c2878cc44a45929b8963e6f64347616da3188"
+  integrity sha512-ZzOScRcH+k/ItRbtdhp5xz9AIBGncTuD6T2DzNfGzG0hgwMahETbipp4dUYo/55z3SEjjiy/+neyOT3BK/jZEA==
+  dependencies:
+    "@nx/web" "18.0.5"
+
 "@nrwl/webpack@18.0.4":
   version "18.0.4"
   resolved "https://registry.yarnpkg.com/@nrwl/webpack/-/webpack-18.0.4.tgz#efedbd097eebc27847006175585a0b9c3f40e8bc"
@@ -2264,7 +2271,7 @@
     enquirer "~2.3.6"
     tsconfig-paths "^4.1.2"
 
-"@nx/vite@18.0.5", "@nx/vite@^18.0.4":
+"@nx/vite@18.0.5":
   version "18.0.5"
   resolved "https://registry.yarnpkg.com/@nx/vite/-/vite-18.0.5.tgz#c4317417c80549c0306950075face4e3ad0dafd3"
   integrity sha512-rK3BnHS3+JwshL+bqsCUDxCG1L6SyKEDHgv+TcP/qhnbWuh8SDVxbUr6cafoB2fnfYrpTJ9d13KfeDr6Azbfgw==
@@ -2285,6 +2292,19 @@
     "@nrwl/web" "18.0.4"
     "@nx/devkit" "18.0.4"
     "@nx/js" "18.0.4"
+    chalk "^4.1.0"
+    detect-port "^1.5.1"
+    http-server "^14.1.0"
+    tslib "^2.3.0"
+
+"@nx/web@18.0.5":
+  version "18.0.5"
+  resolved "https://registry.yarnpkg.com/@nx/web/-/web-18.0.5.tgz#92cf44ed390edec772f5bbfd9c2d0f442b6502bb"
+  integrity sha512-3xZwK4Ul4T7EQeKjQTvKH2ZnWKfm12aBeusLMWn7wWDUT5D0Vu0onDIPy22qeyXNgdOKkwMds9oI2hSOMT17ow==
+  dependencies:
+    "@nrwl/web" "18.0.5"
+    "@nx/devkit" "18.0.5"
+    "@nx/js" "18.0.5"
     chalk "^4.1.0"
     detect-port "^1.5.1"
     http-server "^14.1.0"
@@ -3166,6 +3186,25 @@
     "@types/babel__core" "^7.20.5"
     react-refresh "^0.14.0"
 
+"@vitest/coverage-v8@^1.0.4":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@vitest/coverage-v8/-/coverage-v8-1.3.1.tgz#cf5ed8eb5bff6658cea126d0f8fcd2872de0b59f"
+  integrity sha512-UuBnkSJUNE9rdHjDCPyJ4fYuMkoMtnghes1XohYa4At0MS3OQSAo97FrbwSLRshYsXThMZy1+ybD/byK5llyIg==
+  dependencies:
+    "@ampproject/remapping" "^2.2.1"
+    "@bcoe/v8-coverage" "^0.2.3"
+    debug "^4.3.4"
+    istanbul-lib-coverage "^3.2.2"
+    istanbul-lib-report "^3.0.1"
+    istanbul-lib-source-maps "^4.0.1"
+    istanbul-reports "^3.1.6"
+    magic-string "^0.30.5"
+    magicast "^0.3.3"
+    picocolors "^1.0.0"
+    std-env "^3.5.0"
+    test-exclude "^6.0.0"
+    v8-to-istanbul "^9.2.0"
+
 "@vitest/expect@1.3.1":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@vitest/expect/-/expect-1.3.1.tgz#d4c14b89c43a25fd400a6b941f51ba27fe0cb918"
@@ -3200,7 +3239,7 @@
   dependencies:
     tinyspy "^2.2.0"
 
-"@vitest/ui@^1.0.4":
+"@vitest/ui@^1.3.1":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@vitest/ui/-/ui-1.3.1.tgz#89e6a049f3fa68f6dad804318f0b8477cd5392da"
   integrity sha512-2UrFLJ62c/eJGPHcclstMKlAR7E1WB1ITe1isuowEPJJHi3HfqofvsUqQ1cGrEF7kitG1DJuwURUA3HLDtQkXA==
@@ -6697,7 +6736,7 @@ isobject@^3.0.1:
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==
 
-istanbul-lib-coverage@^3.0.0, istanbul-lib-coverage@^3.2.0:
+istanbul-lib-coverage@^3.0.0, istanbul-lib-coverage@^3.2.0, istanbul-lib-coverage@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/istanbul-lib-coverage/-/istanbul-lib-coverage-3.2.2.tgz#2d166c4b0644d43a39f04bf6c2edd1e585f31756"
   integrity sha512-O8dpsF+r0WV/8MNRKfnmrtCWhuKjxrq2w+jpzBL5UZKTi2LeVWnWOmWRxFlesJONmc+wLAGvKQZEOanko0LFTg==
@@ -6724,7 +6763,7 @@ istanbul-lib-instrument@^6.0.0:
     istanbul-lib-coverage "^3.2.0"
     semver "^7.5.4"
 
-istanbul-lib-report@^3.0.0:
+istanbul-lib-report@^3.0.0, istanbul-lib-report@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/istanbul-lib-report/-/istanbul-lib-report-3.0.1.tgz#908305bac9a5bd175ac6a74489eafd0fc2445a7d"
   integrity sha512-GCfE1mtsHGOELCU8e/Z7YWzpmybrx/+dSTfLrvY8qRmaY6zXTKWn6WQIjaAFw069icm6GVMNkgu0NzI4iPZUNw==
@@ -6733,7 +6772,7 @@ istanbul-lib-report@^3.0.0:
     make-dir "^4.0.0"
     supports-color "^7.1.0"
 
-istanbul-lib-source-maps@^4.0.0:
+istanbul-lib-source-maps@^4.0.0, istanbul-lib-source-maps@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/istanbul-lib-source-maps/-/istanbul-lib-source-maps-4.0.1.tgz#895f3a709fcfba34c6de5a42939022f3e4358551"
   integrity sha512-n3s8EwkdFIJCG3BPKBYvskgXGoy88ARzvegkitk60NxRdwltLOTaH7CUiMRXvwYorl0Q712iEjcWB+fK/MrWVw==
@@ -6742,7 +6781,7 @@ istanbul-lib-source-maps@^4.0.0:
     istanbul-lib-coverage "^3.0.0"
     source-map "^0.6.1"
 
-istanbul-reports@^3.1.3:
+istanbul-reports@^3.1.3, istanbul-reports@^3.1.6:
   version "3.1.7"
   resolved "https://registry.yarnpkg.com/istanbul-reports/-/istanbul-reports-3.1.7.tgz#daed12b9e1dca518e15c056e1e537e741280fa0b"
   integrity sha512-BewmUXImeuRk2YY0PVbxgKAysvhRPUQE0h5QRM++nVWyubKGV0l8qQ5op8+B2DOmwSe63Jivj0BjkPQVf8fP5g==
@@ -7515,6 +7554,15 @@ magic-string@^0.30.5:
   integrity sha512-8vBuFF/I/+OSLRmdf2wwFCJCz+nSn0m6DPvGH1fS/KiQoSaR+sETbov0eIk9KhEKy8CYqIkIAnbohxT/4H0kuA==
   dependencies:
     "@jridgewell/sourcemap-codec" "^1.4.15"
+
+magicast@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/magicast/-/magicast-0.3.3.tgz#a15760f982deec9dabc5f314e318d7c6bddcb27b"
+  integrity sha512-ZbrP1Qxnpoes8sz47AM0z08U+jW6TyRgZzcWy3Ma3vDhJttwMwAFDMMQFobwdBxByBD46JYmxRzeF7w2+wJEuw==
+  dependencies:
+    "@babel/parser" "^7.23.6"
+    "@babel/types" "^7.23.6"
+    source-map-js "^1.0.2"
 
 make-dir@^2.1.0:
   version "2.1.0"
@@ -10260,7 +10308,7 @@ v8-compile-cache-lib@^3.0.1:
   resolved "https://registry.yarnpkg.com/v8-compile-cache-lib/-/v8-compile-cache-lib-3.0.1.tgz#6336e8d71965cb3d35a1bbb7868445a7c05264bf"
   integrity sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==
 
-v8-to-istanbul@^9.0.1:
+v8-to-istanbul@^9.0.1, v8-to-istanbul@^9.2.0:
   version "9.2.0"
   resolved "https://registry.yarnpkg.com/v8-to-istanbul/-/v8-to-istanbul-9.2.0.tgz#2ed7644a245cddd83d4e087b9b33b3e62dfd10ad"
   integrity sha512-/EH/sDgxU2eGxajKdwLCDmQ4FWq+kpi3uCmBGpw1xJtnAxEjlD8j8PEiGWpCIMIs3ciNAgH0d3TTJiUkYzyZjA==

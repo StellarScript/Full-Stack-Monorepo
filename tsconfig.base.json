@@ -14,7 +14,10 @@
       "skipLibCheck": true,
       "skipDefaultLibCheck": true,
       "baseUrl": ".",
-      "paths": {}
+      "paths": {
+         "@appify/config": ["libs/config/src/index.ts"],
+         "@appify/utils": ["libs/utils/src/index.ts"]
+      }
    },
    "exclude": ["node_modules", "tmp"]
 }
