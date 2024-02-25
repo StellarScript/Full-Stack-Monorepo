@@ -8,7 +8,7 @@ export default defineConfig({
 
    test: {
       globals: true,
-      environment: 'node',
+      environment: 'jsdom',
       include: ['test/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
       reporters: ['default'],
       coverage: { reportsDirectory: '../../coverage/libs/data', provider: 'v8' },
