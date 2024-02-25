@@ -1,11 +1,11 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 
-import { App, Stack } from 'aws-cdk-lib';
+import { App } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { ResourceStack } from '../src/stack/resource';
 
 describe('Resource Stack', () => {
-   let stack: Stack;
+   let stack: ResourceStack;
 
    beforeAll(() => {
       const app = new App();
@@ -14,7 +14,7 @@ describe('Resource Stack', () => {
 
    describe('Resource Stack Resources', () => {
       it('test ', () => {
-         template = Template.fromStack(stack);
+         const template = Template.fromStack(stack.vpc);
          expect(template).toBeDefined();
       });
    });

@@ -3,10 +3,12 @@
    "compilerOptions": {
       "outDir": "../../dist/out-tsc",
       "module": "commonjs",
-      "types": ["node"],
+      "types": ["node", "./global.types.d.ts"],
       "emitDecoratorMetadata": true,
-      "target": "es2021"
+      "target": "es2021",
+      "allowJs": true,
+      "declaration": true
    },
-   "exclude": ["**/*.spec.ts", "**/*.test.ts"],
-   "include": ["src/**/*.ts", "global.ts"]
+   "include": ["src/**/*.ts"],
+   "exclude": ["**/*.spec.ts", "**/*.test.ts"]
 }

@@ -13,13 +13,13 @@ export class ProdStage extends Stage {
       super(scope, id, props);
 
       this.resourceStack = new ResourceStack(this, 'resource', {
-         env: props?.env,
+         env: props.env,
          tagIdentifier: props.tagIdentifier,
          stackIdentifier: StackIdentifier.ResourceStack,
       });
 
       this.serviceStack = new ServiceStack(this, 'service', {
-         env: props?.env,
+         env: props.env,
          tagIdentifier: props.tagIdentifier,
          stackIdentifier: StackIdentifier.ServiceStack,
       });
