@@ -1,13 +1,18 @@
 //@ts-check
 
-const { composePlugins, withNx } = require('@nx/next');
+const { composePlugins, withNx } = require("@nx/next");
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
  **/
 const nextConfig = {
-   nx: {
-      svgr: false,
+   nx: {},
+   webpack: (config) => {
+      config.externals.push({
+         test: /\.svg$/i,
+         use: ["@svgr/webpack"],
+      });
+      return config;
    },
 };
 

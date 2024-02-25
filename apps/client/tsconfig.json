@@ -13,7 +13,10 @@
       "isolatedModules": true,
       "incremental": true,
       "plugins": [{ "name": "next" }],
-      "types": ["node"]
+      "types": ["node"],
+      "paths": {
+         "@components/*": ["apps/client/src/components/*"]
+      }
    },
    "include": [
       "**/*.ts",
