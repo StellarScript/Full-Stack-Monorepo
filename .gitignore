@@ -40,6 +40,10 @@ testem.log
 Thumbs.db
 .nx/cache
 
+# next.js
+/.next/
+/out/
+
 # AWS CDK
 cdk.out
 cdk.context.json
