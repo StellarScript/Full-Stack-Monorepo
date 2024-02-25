@@ -40,7 +40,7 @@
          "executor": "@nx/vite:test",
          "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
          "options": {
-            "config": "vitest.config.ts"
+            "config": "apps/client/vitest.config.ts"
          }
       },
       "lint": {
