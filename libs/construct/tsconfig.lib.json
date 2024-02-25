@@ -5,8 +5,7 @@
       "module": "commonjs",
       "types": ["node"],
       "emitDecoratorMetadata": true,
-      "target": "es2021",
-      "composite": true
+      "target": "es2021"
    },
    "exclude": ["**/*.spec.ts", "**/*.test.ts"],
    "include": ["src/**/*.ts"]
