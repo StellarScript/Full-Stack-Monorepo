@@ -1,3 +1,5 @@
+import { config } from '@appify/config';
+
 /**
  *
  * @param obj
@@ -25,6 +27,17 @@ export function pick<T, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
       }
    }
    return result as Pick<T, K>;
+}
+
+/**
+ *
+ * @description Check if the environment is production
+ */
+export function isProdEnv(): boolean {
+   if (config.app.environment !== 'production') {
+      return false;
+   }
+   return true;
 }
 
 /**

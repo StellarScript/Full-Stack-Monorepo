@@ -1,4 +1,7 @@
 export const config = {
+   app: {
+      environment: process.env['ENVIRONMENT'],
+   },
    cdk: {
       certificateArn: process.env['CERTIFICATE_ARN'],
       hostedZoneId: process.env['HOSTED_ZONE_ID'],
