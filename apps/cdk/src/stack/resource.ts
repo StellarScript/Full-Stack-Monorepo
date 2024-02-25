@@ -1,30 +1,17 @@
 import type { StackProps, Stage } from 'aws-cdk-lib';
-import { IpAddresses } from 'aws-cdk-lib/aws-ec2';
 import { Stack } from 'aws-cdk-lib';
+import { IpAddresses } from 'aws-cdk-lib/aws-ec2';
+import { LoadBalancerTarget } from 'aws-cdk-lib/aws-route53-targets';
+import { ARecord, IHostedZone, PublicHostedZone, RecordTarget } from 'aws-cdk-lib/aws-route53';
 
+import { ExportParamter } from '../config';
 import { config } from '@appify/config';
+
 import { Vpc } from '@appify/construct/vpc';
 import { Alb } from '@appify/construct/alb';
 import { Tags } from '@appify/construct/tags';
 import { Parameter } from '@appify/construct/parameter';
 import { SecurityGroup } from '@appify/construct/security-group';
-import { LoadBalancerTarget } from 'aws-cdk-lib/aws-route53-targets';
-import { ARecord, IHostedZone, PublicHostedZone, RecordTarget } from 'aws-cdk-lib/aws-route53';
-
-/**
- *
- * @description Exported parameters for other stacks to use
- */
-export enum ExportParamter {
-   VPC_ID = 'VpcId-ExportParamter',
-   ALB_ARN = 'AlbArn-ExportParamter',
-   ALB_SG = 'AlbSG-ExportParamter',
-}
-
-interface ResourceStackProps extends StackProps {
-   tagIdentifier: string;
-   stackIdentifier: string;
-}
 
 export class ResourceStack extends Stack {
    public readonly vpc: Vpc;
@@ -32,7 +19,7 @@ export class ResourceStack extends Stack {
    public readonly albSG: SecurityGroup;
    public readonly hostedZone: IHostedZone;
 
-   constructor(scope: Stage, id: string, props?: ResourceStackProps) {
+   constructor(scope: Stage, id: string, props?: Cdk.StackProps) {
       super(scope, id, props);
 
       this.vpc = new Vpc(this, 'DefaultVpc', {

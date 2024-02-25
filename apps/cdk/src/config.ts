@@ -9,7 +9,18 @@ export enum ImageTag {
    Production = 'production',
 }
 
-export class Config {
+export enum ExportParamter {
+   VPC_ID = 'VpcId-ExportParamter',
+   ALB_ARN = 'AlbArn-ExportParamter',
+   ALB_SG = 'AlbSG-ExportParamter',
+}
+
+export enum StackIdentifier {
+   ResourceStack = 'resource',
+   ServiceStack = 'service',
+}
+
+export class ServiceConfig {
    public static readonly FamilyName: 'appify-service';
    public static readonly MemoryLimitMiB: 512;
    public static readonly Cpu: 256;

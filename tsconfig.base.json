@@ -15,7 +15,7 @@
       "skipDefaultLibCheck": true,
       "baseUrl": ".",
       "paths": {
-         "@appify/construct/*": ["libs/construct/src/*"],
+         "@appify/construct/*": ["libs/construct/src/*.ts"],
          "@appify/config": ["libs/config/src/index.ts"],
          "@appify/utils": ["libs/utils/src/index.ts"]
       }

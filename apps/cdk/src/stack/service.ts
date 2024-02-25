@@ -6,40 +6,25 @@ import type { IApplicationLoadBalancer as IAlb } from 'aws-cdk-lib/aws-elasticlo
 
 import { Stack } from 'aws-cdk-lib';
 import { Certificate } from 'aws-cdk-lib/aws-certificatemanager';
-import {
-   ListenerAction,
-   ListenerCondition,
-   ApplicationProtocol,
-   ApplicationTargetGroup,
-} from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import { ApplicationProtocol, ApplicationTargetGroup } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import { ListenerAction, ListenerCondition } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 
 import { config } from '@appify/config';
+import { ServiceConfig, ContainerName, ImageTag, ExportParamter } from '../config';
+
 import { Vpc } from '@appify/construct/vpc';
 import { Alb } from '@appify/construct/alb';
 import { SecurityGroup } from '@appify/construct/security-group';
 
-import { ExportParamter } from './resource';
+import { Tags } from '@appify/construct/tags';
+import { HealthCheck } from '@appify/construct/health-check';
+import { ServiceContainer } from '@appify/construct/container';
+import { FargateService } from '@appify/construct/fargate-service';
+
 import { Cluster } from '@appify/construct/cluster';
 import { AutoScalingGroup } from '@appify/construct/autoscaling';
 import { AsgCapacityProvider } from '@appify/construct/asg-capacity';
 import { FargateTaskDefinition } from '@appify/construct/task-definition';
-
-import { HealthCheck } from '@appify/construct/health-check';
-import { ServiceContainer } from '@appify/construct/container';
-import { FargateService } from '@appify/construct/fargate-service';
-import { Config, ContainerName, ImageTag } from '../config';
-import { Tags } from '@appify/construct/tags';
-
-interface ServiceStackProps extends StackProps {
-   tagIdentifier: string;
-   stackIdentifier: string;
-}
-
-const TaskConfig = {
-   Cpu: 256,
-   MemoryLimitMiB: 512,
-   familyName: 'appify-service',
-};
 
 export class ServiceStack extends Stack {
    public readonly vpc: IVpc;
@@ -59,7 +44,7 @@ export class ServiceStack extends Stack {
    private readonly blueTargetGroup: ApplicationTargetGroup;
    private readonly greenTargetGroup: ApplicationTargetGroup;
 
-   constructor(scope: Stage, id: string, props?: ServiceStackProps) {
+   constructor(scope: Stage, id: string, props?: Cdk.StackProps) {
       super(scope, id, props);
 
       // Resource Lookup
@@ -84,13 +69,13 @@ export class ServiceStack extends Stack {
       });
 
       this.taskDefinition = new FargateTaskDefinition(this, 'TaskDefinition', {
-         memoryLimitMiB: TaskConfig.MemoryLimitMiB,
-         cpu: TaskConfig.Cpu,
-         family: TaskConfig.familyName,
+         memoryLimitMiB: ServiceConfig.MemoryLimitMiB,
+         cpu: ServiceConfig.Cpu,
+         family: ServiceConfig.FamilyName,
       });
 
       const serverContainer = new ServiceContainer(this.taskDefinition, ContainerName.Server, {
-         portMappings: [{ containerPort: Config.Ports.Server }],
+         portMappings: [{ containerPort: ServiceConfig.Ports.Server }],
          tag: ImageTag.Latest,
          log: true,
          essential: false,
@@ -99,7 +84,7 @@ export class ServiceStack extends Stack {
          },
       });
       const clientContainer = new ServiceContainer(this.taskDefinition, ContainerName.Client, {
-         portMappings: [{ containerPort: Config.Ports.Client }],
+         portMappings: [{ containerPort: ServiceConfig.Ports.Client }],
          tag: ImageTag.Latest,
          essential: true,
          log: true,
@@ -120,14 +105,14 @@ export class ServiceStack extends Stack {
 
       const clientTargetGroup = this.fargateService.loadBalancerTarget({
          containerName: ContainerName.Client,
-         containerPort: Config.Ports.Client,
+         containerPort: ServiceConfig.Ports.Client,
       });
 
       this.blueTargetGroup = new ApplicationTargetGroup(this, 'BlueTargetGroup', {
          healthCheck: new HealthCheck({ path: '/' }),
          protocol: ApplicationProtocol.HTTP,
          targets: [clientTargetGroup],
-         port: Config.Ports.Client,
+         port: ServiceConfig.Ports.Client,
          vpc: this.vpc,
       });
 
@@ -135,18 +120,18 @@ export class ServiceStack extends Stack {
          healthCheck: new HealthCheck({ path: '/api/data' }),
          protocol: ApplicationProtocol.HTTP,
          targets: [clientTargetGroup],
-         port: Config.Ports.Client,
+         port: ServiceConfig.Ports.Client,
          vpc: this.vpc,
       });
 
       this.testListener = this.alb.addListener('TestListener', {
-         port: Config.Ports.Client,
+         port: ServiceConfig.Ports.Client,
          protocol: ApplicationProtocol.HTTP,
       });
 
       this.secureListener = this.alb.addListener('SecureListener', {
          certificates: [this.certificate],
-         port: Config.Ports.Secure,
+         port: ServiceConfig.Ports.Secure,
          open: true,
       });
 
@@ -162,7 +147,7 @@ export class ServiceStack extends Stack {
          priority: 1,
          conditions: [ListenerCondition.pathPatterns(['*'])],
          action: ListenerAction.redirect({
-            port: Config.Ports.Secure.toString(),
+            port: ServiceConfig.Ports.Secure.toString(),
             protocol: ApplicationProtocol.HTTPS,
          }),
       });
