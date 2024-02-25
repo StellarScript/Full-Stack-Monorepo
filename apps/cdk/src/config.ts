@@ -11,8 +11,8 @@ export enum ImageTag {
 
 export enum ExportParamter {
    VPC_ID = 'VpcId-ExportParamter',
-   ALB_ARN = 'AlbArn-ExportParamter',
    ALB_SG = 'AlbSG-ExportParamter',
+   ALB_ARN = 'AlbArn-ExportParamter',
 }
 
 export enum StackIdentifier {
