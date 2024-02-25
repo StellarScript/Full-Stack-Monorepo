@@ -1,3 +1,5 @@
-export function config(): string {
+export const config = {};
+
+export function configuration() {
    return 'config';
 }
