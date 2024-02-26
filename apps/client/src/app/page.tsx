@@ -14,7 +14,7 @@ export default async function Index() {
                      </span>
                   </div>
                   <div className="md:flex items-center justify-end hidden">
-                     <a className="bg-blue-500 text-white px-5 py-2 rounded-md shadow hover:bg-blue-600 transition-colors">
+                     <a className="bg-blue-500 text-white px-5 py-2 rounded-md shadow hover:bg-blue-600 transition-colors cursor-pointer">
                         Login
                      </a>
                   </div>
