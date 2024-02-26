@@ -15,7 +15,8 @@
       "plugins": [{ "name": "next" }],
       "types": ["node"],
       "paths": {
-         "@components/*": ["apps/client/src/components/*"]
+         "@components/*": ["apps/client/src/components/*"],
+         "@utils": ["apps/client/src/utils"]
       }
    },
    "include": [
