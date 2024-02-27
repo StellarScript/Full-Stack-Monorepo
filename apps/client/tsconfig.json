@@ -16,7 +16,8 @@
       "types": ["node"],
       "paths": {
          "@components/*": ["apps/client/src/components/*"],
-         "@utils": ["apps/client/src/utils"]
+         "@utils": ["apps/client/src/utils"],
+         "@routes": ["apps/client/src/routes"]
       }
    },
    "include": [
