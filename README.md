@@ -37,3 +37,7 @@ TAG_IDENTIFIER=""
 ### Dopper Environmental Variable
 
 -  add environmental variables in dopper: [artical how to get started with doppler](https://medium.com/@edoter92/elevate-your-environmental-security-dive-into-dopplers-capabilities-c618d148f915)
+
+<br>
+
+### Create Auth0 Project
