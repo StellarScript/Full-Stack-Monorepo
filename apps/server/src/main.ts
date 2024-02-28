@@ -10,8 +10,8 @@ async function bootstrap() {
    const app = await NestFactory.create(AppModule);
 
    const config = app.get(ConfigService);
-   const PORT = config.get('config.serverPort');
-   const ORIGIN = config.get('config.frontendUrl');
+   const PORT = config.get('app.serverPort');
+   const ORIGIN = config.get('app.frontendUrl');
 
    app.use(cookieParser());
    app.enableCors({

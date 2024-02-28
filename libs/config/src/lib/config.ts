@@ -1,6 +1,8 @@
 export const config = {
    app: {
       environment: process.env['ENVIRONMENT'],
+      serverPort: process.env['SERVER_PORT'],
+      frontendPort: process.env['FRONTEND_PORT'],
    },
    cdk: {
       certificateArn: process.env['CERTIFICATE_ARN'],
