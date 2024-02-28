@@ -1,0 +1,10 @@
+{
+   "projects": {},
+   "compilerOptions": {
+      "webpack": true,
+      "builder": "swc",
+      "options": {
+         "swcrcPath": "apps/server/.swcrc"
+      }
+   }
+}
