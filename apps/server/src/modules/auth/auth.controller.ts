@@ -5,8 +5,8 @@ import { AuthService } from './auth.service';
 export class AuthController {
    constructor(private readonly authService: AuthService) {}
 
-   @Post('signin')
-   public async signIn() {
-      return await this.authService.authenticate();
+   @Post('signup')
+   public async Signup() {
+      return await this.authService.signup();
    }
 }
