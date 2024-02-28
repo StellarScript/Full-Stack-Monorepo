@@ -3,6 +3,8 @@ export const config = {
       environment: process.env['ENVIRONMENT'],
       serverPort: process.env['SERVER_PORT'],
       frontendPort: process.env['FRONTEND_PORT'],
+      frontendUrl: process.env['FRONTEND_URL'],
+      serverUrl: process.env['SERVER_URL']!,
    },
    cdk: {
       certificateArn: process.env['CERTIFICATE_ARN'],
@@ -13,6 +15,11 @@ export const config = {
 
    dopper: {
       token: process.env['DOPPER_ACCESS_TOKEN'],
+   },
+
+   clerk: {
+      clerkJwksUrl: process.env['CLERK_JWKS_URL'],
+      clerkJwtKey: process.env['CLERK_JWT_KEY'],
    },
 
    aws: {

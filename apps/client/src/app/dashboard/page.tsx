@@ -1,3 +1,5 @@
+import { getDashboardAction } from "./actions";
+
 export default function DashboardPage() {
    return (
       <div className="flex size-full">
@@ -22,6 +24,9 @@ export default function DashboardPage() {
             <div className="size-full md:pt-[6.75rem] pt-[70px]">
                <div className="container-lg mx-auto md:px-0 px-[33px]">
                   <h1>Dashboard Page</h1>
+                  <form action={getDashboardAction}>
+                     <button type="submit">Submit</button>
+                  </form>
                </div>
             </div>
          </div>

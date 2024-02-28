@@ -17,7 +17,8 @@
       "paths": {
          "@components/*": ["apps/client/src/components/*"],
          "@utils": ["apps/client/src/utils"],
-         "@routes": ["apps/client/src/routes"]
+         "@routes": ["apps/client/src/routes"],
+         "@appify/config": ["libs/config/src/index.ts"]
       }
    },
    "include": [
