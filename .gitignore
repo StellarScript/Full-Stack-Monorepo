@@ -39,6 +39,7 @@ testem.log
 .DS_Store
 Thumbs.db
 .nx/cache
+migrations
 
 # next.js
 /.next/
