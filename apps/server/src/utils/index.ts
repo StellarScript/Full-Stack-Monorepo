@@ -1,1 +1,1 @@
-export * from './clerk.auth';
+export {};

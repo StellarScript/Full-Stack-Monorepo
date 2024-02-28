@@ -8,7 +8,7 @@ export const getDashboardAction = async () => {
 
    try {
       const response = await fetch("http://localhost:8080/api/user/profile", {
-         // headers: { Authorization: `Bearer ${token}` },
+         headers: { Authorization: `Bearer ${token}` },
       });
       console.log("----response", response.status);
    } catch (error) {
