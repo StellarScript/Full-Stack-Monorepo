@@ -1,7 +1,7 @@
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { ClerkExpressRequireAuth } from '@clerk/clerk-sdk-node';
 
+import { ClerkAuth } from '@utils';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 
@@ -12,16 +12,7 @@ import { AuthController } from './auth.controller';
    exports: [AuthService],
 })
 export class AuthModule {
-   constructor(private readonly configService: ConfigService) {}
-
    public configure(consumer: MiddlewareConsumer) {
-      consumer
-         .apply(
-            ClerkExpressRequireAuth({
-               jwtKey: this.configService.get('clerk.clerkJwtKey'),
-               signInUrl: this.configService.get('clerk.clerkJwksUrl'),
-            }),
-         )
-         .forRoutes('*');
+      consumer.apply(ClerkAuth).forRoutes('*');
    }
 }

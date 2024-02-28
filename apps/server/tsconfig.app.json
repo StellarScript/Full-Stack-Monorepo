@@ -10,7 +10,8 @@
          "@modules/*": ["apps/server/src/modules/*"],
          "@providers/*": ["apps/server/src/providers/*"],
          "@appify/utils": ["libs/utils/src/index.ts"],
-         "@appify/config": ["libs/config/src/index.ts"]
+         "@appify/config": ["libs/config/src/index.ts"],
+         "@utils": ["apps/server/src/utils/index.ts"]
       }
    },
    "exclude": ["vitest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
