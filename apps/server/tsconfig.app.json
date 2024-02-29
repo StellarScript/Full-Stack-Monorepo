@@ -7,7 +7,10 @@
       "emitDecoratorMetadata": true,
       "target": "es2021",
       "paths": {
+         "@appify/dto": ["libs/dto/src/index.ts"],
          "@modules/*": ["apps/server/src/modules/*"],
+         "@providers/*": ["apps/server/src/providers/*"],
+         "@decorators/*": ["apps/server/src/decorators/*"],
          "@appify/utils": ["libs/utils/src/index.ts"],
          "@appify/config": ["libs/config/src/index.ts"]
       }

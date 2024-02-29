@@ -5,6 +5,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import cookieParser from 'cookie-parser';
 import { isProdEnv } from '@appify/utils';
 import { AppModule } from './app/app.module';
+import { ClerkAuthGuard } from './guard/auth.guard';
 
 declare const module: {
    hot: HotModule;
@@ -25,6 +26,7 @@ async function bootstrap() {
    });
 
    app.setGlobalPrefix('api');
+   app.useGlobalGuards(new ClerkAuthGuard());
    app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
    await app.listen(PORT);

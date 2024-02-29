@@ -17,6 +17,7 @@
       "paths": {
          "@appify/config": ["libs/config/src/index.ts"],
          "@appify/construct/*": ["libs/construct/src/*.ts"],
+         "@appify/dto": ["libs/dto/src/index.ts"],
          "@appify/utils": ["libs/utils/src/index.ts"]
       }
    },
