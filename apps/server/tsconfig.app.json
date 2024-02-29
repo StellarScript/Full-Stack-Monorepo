@@ -9,6 +9,7 @@
       "paths": {
          "@appify/dto": ["libs/dto/src/index.ts"],
          "@modules/*": ["apps/server/src/modules/*"],
+         "@guards/*": ["apps/server/src/guards/*"],
          "@providers/*": ["apps/server/src/providers/*"],
          "@decorators/*": ["apps/server/src/decorators/*"],
          "@appify/utils": ["libs/utils/src/index.ts"],

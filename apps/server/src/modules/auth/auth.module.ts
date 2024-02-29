@@ -1,4 +1,3 @@
-import passport from 'passport';
 import { ConfigModule } from '@nestjs/config';
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 
@@ -14,9 +13,6 @@ import { ClerkStrategy } from './strategy/cleark.strategy';
 })
 export class AuthModule {
    public configure(consumer: MiddlewareConsumer) {
-      consumer
-         .apply(passport.initialize(), ClerkStrategy.authMiddleware)
-         .exclude('/app/health')
-         .forRoutes('*');
+      consumer.apply(ClerkStrategy.authMiddleware).forRoutes('*');
    }
 }

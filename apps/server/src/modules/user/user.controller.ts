@@ -1,8 +1,8 @@
 import { Get, Controller } from '@nestjs/common';
 
-import { UserService } from './user.service';
 import { UserSessionDto } from '@appify/dto';
 import { User } from '@decorators/param.decorator';
+import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {

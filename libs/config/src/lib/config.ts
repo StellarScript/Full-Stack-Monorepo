@@ -18,6 +18,7 @@ export const config = {
    },
 
    clerk: {
+      webhookSecret: process.env['CLERK_WEBHOOK_SECRET'],
       clerkJwksUrl: process.env['CLERK_JWKS_URL'],
       clerkJwtKey: process.env['CLERK_JWT_KEY'],
    },
