@@ -2,9 +2,9 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 
 import { config } from '@appify/config';
+import { Strategy } from 'passport-custom';
 import { ClerkExpressWithAuth } from '@clerk/clerk-sdk-node';
 import type { Request, Response, NextFunction } from 'express';
-import { Strategy } from 'passport-custom';
 
 @Injectable()
 export class ClerkStrategy extends PassportStrategy(Strategy, 'cleark.strategy') {
