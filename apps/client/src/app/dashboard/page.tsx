@@ -1,6 +1,19 @@
-import { getDashboardAction } from "./actions";
+import { redirect } from "next/navigation";
+import { Avatar } from "@components/avatar";
+import { getAccount } from "./actions";
 
-export default function DashboardPage() {
+const avatarItems = [
+   { title: "Account", url: "#" },
+   { title: "Logout", url: "/auth/logout" },
+];
+
+export default async function DashboardPage() {
+   const user = await getAccount();
+
+   if (!user) {
+      redirect("/auth/login");
+   }
+
    return (
       <div className="flex size-full">
          <div className="size-full">
@@ -12,22 +25,12 @@ export default function DashboardPage() {
                      </span>
                   </div>
                   <div className="md:flex items-center justify-end hidden">
-                     <a
-                        href="/auth/logout"
-                        className="bg-blue-500 text-white px-5 py-2 rounded-md shadow hover:bg-blue-600 transition-colors cursor-pointer"
-                     >
-                        Logout
-                     </a>
+                     <Avatar imageUrl={user.imageUrl} items={avatarItems} />
                   </div>
                </nav>
             </header>
             <div className="size-full md:pt-[6.75rem] pt-[70px]">
-               <div className="container-lg mx-auto md:px-0 px-[33px]">
-                  <h1>Dashboard Page</h1>
-                  <form action={getDashboardAction}>
-                     <button type="submit">Submit</button>
-                  </form>
-               </div>
+               <div className="container-lg mx-auto md:px-0 px-[33px]"></div>
             </div>
          </div>
       </div>

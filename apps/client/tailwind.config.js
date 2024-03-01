@@ -33,6 +33,10 @@ module.exports = {
             "8xl": ["6rem", { fontWeight: "900" }], // 96px
             "9xl": ["8rem", { fontWeight: "900" }], // 128px
          },
+         fontFamily: {
+            inter: ["var(--font-inter)"],
+            lato: ["var(--font-lato)"],
+         },
       },
    },
    plugins: [],

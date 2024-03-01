@@ -1,17 +1,15 @@
 "use server";
+import { headers, request } from "@utils";
+import { PublicProfileDto } from "@appify/dto";
 
-import { auth } from "@clerk/nextjs";
-
-export const getDashboardAction = async () => {
-   const { getToken } = await auth();
-   const token = await getToken();
-
+export const getAccount = async (): Promise<Nullable<PublicProfileDto>> => {
    try {
-      const response = await fetch("http://localhost:8080/api/user/profile", {
-         // headers: { Authorization: `Bearer ${token}` },
+      const response = await request("/api/user/profile", {
+         headers: await headers(),
       });
-      console.log("----response", response.status);
+      return (await response.json()) as PublicProfileDto;
    } catch (error) {
-      console.error("----", error);
+      console.error(error);
+      return null;
    }
 };

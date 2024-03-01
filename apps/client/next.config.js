@@ -7,6 +7,9 @@ const { composePlugins, withNx } = require("@nx/next");
  **/
 const nextConfig = {
    nx: {},
+   images: {
+      remotePatterns: [{ hostname: "img.clerk.com" }],
+   },
    webpack: (config) => {
       config.externals.push({
          test: /\.svg$/i,

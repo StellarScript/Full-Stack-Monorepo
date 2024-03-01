@@ -1,6 +1,5 @@
 import { Get, Controller } from '@nestjs/common';
-
-import { UserSessionDto } from '@appify/dto';
+import { PublicProfileDto, UserSessionDto } from '@appify/dto';
 import { User } from '@decorators/param.decorator';
 import { UserService } from './user.service';
 
@@ -9,7 +8,7 @@ export class UserController {
    constructor(private readonly userService: UserService) {}
 
    @Get('/profile')
-   public async UserProfile(@User() user: UserSessionDto) {
-      return await this.userService.userProfile();
+   public async UserProfile(@User() user: UserSessionDto): Promise<PublicProfileDto> {
+      return await this.userService.userProfile(user.sub);
    }
 }

@@ -1,6 +1,4 @@
-import { cn } from "@utils";
 import { Infinity } from "@components/svg/infinity";
-import { inter } from "./fonts";
 
 export default async function Index() {
    return (
@@ -28,12 +26,7 @@ export default async function Index() {
                <div className="container-lg mx-auto md:px-0 px-[33px]">
                   <div className="flex flex-wrap self-stretch w-full items-start">
                      <div className="md:w-[60%] sm:w-full md:text-start text-center">
-                        <div
-                           className={cn(
-                              inter.className,
-                              "md:text-[72px] text-[54px] font-bold md:leading-[80px] leading-[60px] tracking-[0px]",
-                           )}
-                        >
+                        <div className="font-inter font-bold  md:text-[72px] text-[54px] md:leading-[80px] leading-[60px] tracking-[0px]">
                            <h1>Dive into the world of animation</h1>
                         </div>
                      </div>
@@ -44,7 +37,7 @@ export default async function Index() {
                            <div className="flex md:block justify-center md:justify-start text-center md:text-start md:pt-[60px] pt-[35px] content-start flex-wrap self-stretch">
                               <div className="flex w-[80%]">
                                  <div className="md:mb-[80px] mb-[30px] mx-2 break-words">
-                                    <div className={cn(inter.className, "text-[18px] font-light")}>
+                                    <div className="font-inter font-light text-[18px]">
                                        <span>Make your content alive with motion designed illustrations</span>
                                     </div>
                                  </div>

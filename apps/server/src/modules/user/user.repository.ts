@@ -1,6 +1,6 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { PrismaProvider } from '@providers/prisma/prisma.provider';
-import { CreateUserWebhookDto } from '@appify/dto';
+import { CreateUserWebhookDto, PublicProfileDto } from '@appify/dto';
 
 @Injectable()
 export class UserRepository {
@@ -30,6 +30,22 @@ export class UserRepository {
             },
          });
       } catch (error) {
+         throw new Error(error);
+      }
+   }
+
+   public async getAccount(userId: string): Promise<PublicProfileDto> {
+      try {
+         return await this.prisma.user.findUniqueOrThrow({
+            where: { id: userId },
+            select: {
+               id: true,
+               imageUrl: true,
+               primaryEmail: true,
+            },
+         });
+      } catch (error) {
+         this.logger.error(`User not found: ${error}`);
          throw new Error(error);
       }
    }
