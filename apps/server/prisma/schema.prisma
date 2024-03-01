@@ -8,26 +8,13 @@ datasource db {
 }
 
 model User {
-  id               String   @id
-  primaryEmail     String   @unique
-  locked           Boolean  @default(false)
-  banned           Boolean  @default(false)
-  password_enabled Boolean
-  password         Int[]
-  emails           Email[]
-  imageUrl         String
-  profileImageUrl  String
-  lastActive       DateTime
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-}
-
-model Email {
-  id        String
-  email     String   @unique
-  linked_to String[]
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id              String   @id
+  primaryEmail    String   @unique
+  locked          Boolean  @default(false)
+  passwordEnabled Boolean
+  imageUrl        String
+  profileImageUrl String
+  lastActive      DateTime
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }

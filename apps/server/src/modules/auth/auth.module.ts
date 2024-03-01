@@ -1,18 +1,20 @@
 import { ConfigModule } from '@nestjs/config';
 import { MiddlewareConsumer, Module } from '@nestjs/common';
+import { UserModule } from '@modules/user/user.module';
 
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
-import { ClerkStrategy } from './strategy/cleark.strategy';
+import { JwtStrategy } from './strategy/jwt.strategy';
+import { WebhookStrategy } from './strategy/webhook.strategy';
 
 @Module({
-   imports: [ConfigModule],
+   imports: [ConfigModule, UserModule],
    controllers: [AuthController],
-   providers: [AuthService, ClerkStrategy],
+   providers: [AuthService, JwtStrategy, WebhookStrategy],
    exports: [AuthService],
 })
 export class AuthModule {
    public configure(consumer: MiddlewareConsumer) {
-      consumer.apply(ClerkStrategy.authMiddleware).forRoutes('*');
+      consumer.apply(JwtStrategy.authMiddleware).forRoutes('*');
    }
 }

@@ -2,10 +2,10 @@ import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 import type { CanActivate, ExecutionContext } from '@nestjs/common';
 
-import { ClerkStrategy } from '@modules/auth/strategy/cleark.strategy';
+import { JwtStrategy } from '@modules/auth/strategy/jwt.strategy';
 import { IS_PUBLIC_IDENTIFIER, BYPASS_GLOBAL_GUARD } from '@decorators/constants.decorator';
 
-export class ClerkAuthGuard extends AuthGuard(ClerkStrategy.key) implements CanActivate {
+export class JwtAuthGuard extends AuthGuard(JwtStrategy.key) implements CanActivate {
    async canActivate(context: ExecutionContext): Promise<boolean> {
       if (this.shouldSkipAuth(context)) {
          return true;

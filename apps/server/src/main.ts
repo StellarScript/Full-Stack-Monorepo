@@ -1,10 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import { Logger, ValidationPipe } from '@nestjs/common';
-
 import cookieParser from 'cookie-parser';
+import helmet from 'helmet';
+
 import { isProdEnv } from '@appify/utils';
-import { ClerkAuthGuard } from '@guards/auth.guard';
+import { JwtAuthGuard } from '@guards/auth.guard';
 import { AppModule } from './app/app.module';
 
 declare const module: {
@@ -13,25 +14,34 @@ declare const module: {
 
 async function bootstrap() {
    const app = await NestFactory.create(AppModule);
+   const configService = app.get(ConfigService);
 
-   const config = app.get(ConfigService);
-   const PORT = config.get('app.serverPort');
-   const ORIGIN = config.get('app.frontendUrl');
+   const port = configService.get<number>('app.serverPort', 3000);
+   const origin = configService.get<string>('app.frontendUrl', 'http://localhost:3000');
 
+   app.use(helmet()); // Apply Helmet for security
    app.use(cookieParser());
    app.enableCors({
-      methods: ['GET', 'POST', 'PUT', 'DELETE'],
-      allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-TOKEN'],
-      origin: ORIGIN,
+      origin: origin,
+      methods: 'GET, POST, PUT, DELETE',
+      allowedHeaders: 'Content-Type, Authorization, X-CSRF-TOKEN',
    });
 
    app.setGlobalPrefix('api');
-   app.useGlobalGuards(new ClerkAuthGuard());
-   app.useGlobalPipes(new ValidationPipe({ transform: true, disableErrorMessages: isProdEnv() }));
+   app.useGlobalGuards(new JwtAuthGuard());
+   app.useGlobalPipes(
+      new ValidationPipe({
+         transform: true,
+         disableErrorMessages: isProdEnv(),
+         whitelist: true,
+         forbidNonWhitelisted: true,
+      }),
+   );
 
-   await app.listen(PORT);
-   Logger.log(`🚀 Application is running on:${ORIGIN}:${PORT}`);
-   Logger.log(`${isProdEnv() ? '🚀 Production' : '🚧 Development'} environment`);
+   await app.listen(port, () => {
+      Logger.log(`🚀 Application running on: ${origin}:${port}`, 'Bootstrap');
+      Logger.log(`${isProdEnv() ? '🚀 Production' : '🚧 Development'} environment`, 'Environment');
+   });
 
    if (!isProdEnv() && module.hot) {
       module.hot.accept();
