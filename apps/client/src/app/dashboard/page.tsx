@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
-import { Avatar } from "@components/avatar";
+import { Avatar } from "@components/Avatar";
+
 import { getAccount } from "./actions";
+import { SideBar } from "./components/Sidebar";
 
 const avatarItems = [
    { title: "Account", url: "#" },
@@ -30,7 +32,9 @@ export default async function DashboardPage() {
                </nav>
             </header>
             <div className="size-full md:pt-[6.75rem] pt-[70px]">
-               <div className="container-lg mx-auto md:px-0 px-[33px]"></div>
+               <div className="container-lg mx-auto md:px-0 px-[33px]">
+                  <SideBar />
+               </div>
             </div>
          </div>
       </div>
