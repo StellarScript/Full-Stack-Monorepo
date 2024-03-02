@@ -10,7 +10,7 @@ module.exports = {
    theme: {
       extend: {
          colors: {
-            skeleton: {
+            lightgray: {
                DEFAULT: "rgba(0, 0, 0, 0.06)",
                100: "rgb(110 110 110 / 6%)",
                200: "rgb(157 157 157 / 6%)",

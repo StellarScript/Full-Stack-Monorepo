@@ -1,7 +1,9 @@
-import { Maximize2, Minimize2, Layout } from "lucide-react";
+import { Minimize2, Home, Settings, Archive, MessageSquareText } from "lucide-react";
 
 export const Icons = {
-   Layout,
-   Maximize2,
+   Home,
+   Settings,
+   MessageSquareText,
+   Archive,
    Minimize2,
 };

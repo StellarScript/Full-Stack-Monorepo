@@ -17,24 +17,16 @@ export default async function DashboardPage() {
    }
 
    return (
-      <div className="flex size-full">
-         <div className="size-full">
-            <header className="container-lg mx-auto">
-               <nav className="grid md:grid-cols-2 sm:grid-cols-1 gap-2 md:justify-between sm:justify-center p-4">
-                  <div className="w-full text-center md:text-start text-[31px]">
-                     <span className="font-bold leading-[60px] bg-clip-text text-transparent bg-gradient-to-r from-[#df4c6d] to-[#0000fe]">
-                        BeLottie
-                     </span>
-                  </div>
-                  <div className="md:flex items-center justify-end hidden">
-                     <Avatar imageUrl={user.imageUrl} items={avatarItems} />
-                  </div>
-               </nav>
-            </header>
-            <div className="size-full md:pt-[6.75rem] pt-[70px]">
-               <div className="container-lg mx-auto md:px-0 px-[33px]">
-                  <SideBar />
-               </div>
+      <div className="flex flex-col size-full justify-center">
+         <header className="w-full border-b-[1px] border-gray-100 p-1 pr-3">
+            <div className="md:flex items-center justify-end hidden p-1">
+               <Avatar imageUrl={user.imageUrl} items={avatarItems} />
+            </div>
+         </header>
+         <SideBar />
+         <div className="h-screen ml-[60px]">
+            <div className="size-full bg-gray-100">
+               <h1>Hello</h1>
             </div>
          </div>
       </div>

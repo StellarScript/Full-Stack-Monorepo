@@ -6,7 +6,7 @@ type SkeletonProps = React.PropsWithChildren & {
 };
 
 export const Skeleton: React.FC<SkeletonProps> = ({ className, childClass, children }) => (
-   <div className={cn("flex size-full bg-skeleton rounded-sm animate-pulse duration-100", className)}>
+   <div className={cn("flex size-full bg-lightgray rounded-sm animate-pulse duration-100", className)}>
       <span className={cn("flex h-full min-h-2.5", childClass)}></span>
       {children}
    </div>
