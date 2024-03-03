@@ -1,8 +1,7 @@
+import "../styles/styles.css";
 import "../styles/global.css";
 
-import { ClerkProvider } from "@clerk/nextjs";
-import { cn } from "@utils";
-import { inter, lato } from "./fonts";
+import { Providers } from "./providers";
 
 export const metadata = {
    title: "Welcome to client",
@@ -12,11 +11,9 @@ export const metadata = {
 export default function RootLayout({ children }: React.PropsWithChildren) {
    return (
       <html lang="en">
-         <ClerkProvider>
-            <body className={cn(inter.variable, lato.variable)}>
-               <main>{children}</main>
-            </body>
-         </ClerkProvider>
+         <Providers>
+            <main>{children}</main>
+         </Providers>
       </html>
    );
 }

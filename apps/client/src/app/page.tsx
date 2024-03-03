@@ -7,7 +7,7 @@ export default async function Index() {
             <header className="container-lg mx-auto">
                <nav className="grid md:grid-cols-2 sm:grid-cols-1 gap-2 md:justify-between sm:justify-center p-4">
                   <div className="w-full text-center md:text-start text-[31px]">
-                     <span className="font-bold leading-[60px] bg-clip-text text-transparent bg-gradient-to-r from-[#df4c6d] to-[#0000fe]">
+                     <span className="font-bold leading-[60px] bg-clip-text text-transparent bg-gradient-brand">
                         BeLottie
                      </span>
                   </div>
@@ -46,7 +46,7 @@ export default async function Index() {
                         </div>
                         <div className="flex items-start items-center md:justify-start justify-center">
                            <div className="mr-[60px]">
-                              <div className="py-[20px] bg-[#017fe4] text-[#ffffff] rounded-[12px]">
+                              <div className="py-[20px] bg-primary-light text-[#ffffff] rounded-[12px]">
                                  <span className="text-[18px] leading-[18px] font-normal tracking-[0px] py-[10px] px-[40px]">
                                     Discover Now
                                  </span>
