@@ -1,3 +1,4 @@
+import "../styles/styles.css";
 import "../styles/global.css";
 
 import { ClerkProvider } from "@clerk/nextjs";

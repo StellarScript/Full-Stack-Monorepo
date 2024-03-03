@@ -7,7 +7,9 @@ module.exports = {
       join(__dirname, "{src,pages,components,app}/**/*!(*.stories|*.spec).{ts,tsx,html}"),
       ...createGlobPatternsForDependencies(__dirname),
    ],
+
    theme: {
+      darkMode: "class",
       extend: {
          colors: {
             lightgray: {
@@ -16,6 +18,7 @@ module.exports = {
                200: "rgb(157 157 157 / 6%)",
                300: "rgb(190 188 188 / 6%)",
             },
+            primary: "var(--color-primary)",
          },
          fontSize: {
             xxs: ["0.75rem", { fontWeight: "300" }], // 12px
