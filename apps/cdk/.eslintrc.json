@@ -1,10 +1,12 @@
 {
-   "extends": ["../../.eslintrc.json"],
+   "extends": ["plugin:prettier/recommended", "../../.eslintrc"],
    "ignorePatterns": ["!**/*"],
    "overrides": [
       {
          "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-         "rules": {}
+         "rules": {
+            "no-unused-vars": "warn"
+         }
       },
       {
          "files": ["*.ts", "*.tsx"],
@@ -14,5 +16,8 @@
          "files": ["*.js", "*.jsx"],
          "rules": {}
       }
-   ]
+   ],
+   "rules": {
+      "prettier/prettier": "error"
+   }
 }
