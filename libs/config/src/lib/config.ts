@@ -4,7 +4,12 @@ export const config = {
       serverPort: process.env['SERVER_PORT'],
       frontendPort: process.env['FRONTEND_PORT'],
       frontendUrl: process.env['FRONTEND_URL'],
-      serverUrl: process.env['SERVER_URL']!,
+      serverUrl: process.env['SERVER_URL'],
+   },
+   database: {
+      port: process.env['DATABASE_PORT'],
+      password: process.env['DATABASE_PASSWORD'],
+      identifier: process.env['DATABASE_IDENTIFIER'],
    },
    cdk: {
       certificateArn: process.env['CERTIFICATE_ARN'],
