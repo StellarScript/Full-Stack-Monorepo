@@ -1,6 +1,14 @@
 {
    "extends": ["plugin:prettier/recommended", "../../.eslintrc"],
    "ignorePatterns": ["!**/*"],
+   "env": {
+      "es6": true
+   },
+   "parserOptions": {
+      "ecmaVersion": 2018,
+      "project": "apps/cdk/tsconfig.app.json"
+   },
+   "sourceType": "module",
    "overrides": [
       {
          "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],

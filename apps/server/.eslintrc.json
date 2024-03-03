@@ -1,31 +1,31 @@
 {
+   "extends": ["eslint:recommended", "../../.eslintrc.json"],
+   "ignorePatterns": ["!**/*", ".next/**/*"],
    "root": true,
    "parser": "@typescript-eslint/parser",
    "env": {
       "node": true
    },
-   "extends": ["eslint:recommended"],
    "plugins": ["@nx"],
-   "rules": {
-      "@typescript-eslint/explicit-module-boundary-types": "error"
-   },
    "overrides": [
       {
-         "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+         "files": ["*.*"],
          "rules": {
-            "@nx/enforce-module-boundaries": [
-               "error",
-               {
-                  "enforceBuildableLibDependency": true,
-                  "allow": [],
-                  "depConstraints": [
-                     {
-                        "sourceTag": "*",
-                        "onlyDependOnLibsWithTags": ["*"]
-                     }
-                  ]
-               }
-            ]
+            "@next/next/no-html-link-for-pages": "off"
+         }
+      },
+      {
+         "files": ["*.ts", "*.tsx"],
+         "rules": {}
+      },
+      {
+         "files": ["*.js", "*.jsx"],
+         "rules": {}
+      },
+      {
+         "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
+         "env": {
+            "jest": true
          }
       }
    ]
