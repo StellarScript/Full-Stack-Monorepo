@@ -1,4 +1,4 @@
-import type { StackProps, Stage } from 'aws-cdk-lib';
+import type { Stage } from 'aws-cdk-lib';
 import type { ISecurityGroup, IVpc } from 'aws-cdk-lib/aws-ec2';
 import type { ICertificate } from 'aws-cdk-lib/aws-certificatemanager';
 import type { ApplicationListener } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
@@ -74,7 +74,7 @@ export class ServiceStack extends Stack {
          family: ServiceConfig.FamilyName,
       });
 
-      const serverContainer = new ServiceContainer(this.taskDefinition, ContainerName.Server, {
+      new ServiceContainer(this.taskDefinition, ContainerName.Server, {
          portMappings: [{ containerPort: ServiceConfig.Ports.Server }],
          tag: ImageTag.Latest,
          log: true,
@@ -83,7 +83,7 @@ export class ServiceStack extends Stack {
             DOPPLER_TOKEN: config.dopper.token,
          },
       });
-      const clientContainer = new ServiceContainer(this.taskDefinition, ContainerName.Client, {
+      new ServiceContainer(this.taskDefinition, ContainerName.Client, {
          portMappings: [{ containerPort: ServiceConfig.Ports.Client }],
          tag: ImageTag.Latest,
          essential: true,

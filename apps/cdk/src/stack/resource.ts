@@ -1,4 +1,4 @@
-import type { StackProps, Stage } from 'aws-cdk-lib';
+import type { Stage } from 'aws-cdk-lib';
 import { Stack } from 'aws-cdk-lib';
 import { IpAddresses } from 'aws-cdk-lib/aws-ec2';
 import { LoadBalancerTarget } from 'aws-cdk-lib/aws-route53-targets';

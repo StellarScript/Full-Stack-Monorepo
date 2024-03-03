@@ -1,20 +1,10 @@
 {
-   "extends": ["plugin:prettier/recommended", "../../.eslintrc"],
+   "extends": ["../../.eslintrc.json", "plugin:prettier/recommended"],
    "ignorePatterns": ["!**/*"],
-   "env": {
-      "es6": true
-   },
-   "parserOptions": {
-      "ecmaVersion": 2018,
-      "project": "apps/cdk/tsconfig.app.json"
-   },
-   "sourceType": "module",
    "overrides": [
       {
          "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-         "rules": {
-            "no-unused-vars": "warn"
-         }
+         "rules": {}
       },
       {
          "files": ["*.ts", "*.tsx"],
@@ -23,9 +13,13 @@
       {
          "files": ["*.js", "*.jsx"],
          "rules": {}
+      },
+      {
+         "files": ["*.json"],
+         "parser": "jsonc-eslint-parser",
+         "rules": {
+            "@nx/dependency-checks": "error"
+         }
       }
-   ],
-   "rules": {
-      "prettier/prettier": "error"
-   }
+   ]
 }
