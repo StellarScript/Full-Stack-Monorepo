@@ -18,6 +18,7 @@ export enum ExportParamter {
 export enum StackIdentifier {
    ResourceStack = 'resource',
    ServiceStack = 'service',
+   DatabaseStack = 'database',
 }
 
 export class ServiceConfig {
