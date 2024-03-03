@@ -62,7 +62,7 @@
    --color-primary-200: #a4a4ff;
    --color-primary-100: #d1d1ff;
    --color-primary-hover: rgba(28, 28, 225, 0.8);
-   --color-primaryActive: primaryLight600;
+   --color-primary-active: #1616cc;
    --color-light-border: #ececec;
    --color-price-card-bg-positive: linear-gradient(0, rgba(207, 236, 224, 0.6) 0%, rgba(207, 236, 224, 0) 100%);
    --color-price-card-bg-negative: linear-gradient(180deg, rgba(241, 204, 204, 0.4) 0%, rgba(241, 204, 204, 0) 100%);
@@ -83,8 +83,8 @@
    --color-modal-bg: hsla(0, 0%, 69.8%, 0.9);
 
    --color-text: #333333;
-   --color-text200: #666666;
-   --color-text300: #4c4c4c;
+   --color-text-200: #666666;
+   --color-text-300: #4c4c4c;
    --color-text-table-of-contents: #7f7f7f;
    --color-bg: #ffffff;
    --color-edn-bg: #f7f7f7;
@@ -113,6 +113,7 @@
    --color-warning-link-hover: #321607;
    --color-tag-mint: #e1fefa;
    --color-mainnet: #9fd8c0;
+
    --color-mainnet-border: #7f7f7f;
    --color-beacon-chain: #ccfcff;
    --color-beacon-chain-border: #7f7f7f;
@@ -214,19 +215,19 @@
       --color-price-card-bg-negative: transparent;
       --color-price-card-bg: transparent;
       --color-price-card-border: #095e3a;
-      --color-priceCardBorderNegative: #d46666;
-      --color-searchBorder: #b2b2b2;
-      --color-searchBackground: #4c4c4c;
-      --color-searchBackgroundEmpty: #333333;
-      --color-searchResultText: #f1f3f5;
-      --color-searchResultBackground: #33363d;
-      --color-selectHover: primaryDark700;
-      --color-selectActive: primaryDark600;
-      --color-dropdownBackground: #191919;
-      --color-dropdownBackgroundHover: #000000;
-      --color-dropdownBorder: #333333;
-      --color-markBackground: rgb(255; 115; 36; 0.1);
-      --color-markUnderline: rgb(255; 115; 36; 0.5);
+      --color-price-card-border-negative: #d46666;
+      --color-search-border: #b2b2b2;
+      --color-search-bg: #4c4c4c;
+      --color-search-bg-empty: #333333;
+      --color-search-result-text: #f1f3f5;
+      --color-search-result-bg: #33363d;
+      --color-select-hover: #994515;
+      --color-select-active: #cc5c1c;
+      --color-dropdown-bg: #191919;
+      --color-dropdown-bg-hover: #000000;
+      --color-dropdown-border: #333333;
+      --color-mark-bg: rgb(255; 115; 36; 0.1);
+      --color-mark-underline: rgb(255; 115; 36; 0.5);
       --color-modal-bg: rgba(25, 25, 25, 0.8);
       --color-text: #f2f2f2;
       --color-text-200: #b2b2b2;
@@ -266,22 +267,21 @@
       --color-card-box-shadow: 4px 4px 0px 0px #ffab7c;
       --color-home-box-mint: #2d3332;
 
-      --color-home-BoxTurquoise: #293233;
-      --color-home-Box-orange: #332821;
-      --color-home-Box-purple: #212131;
+      --color-home-box-Turquoise: #293233;
+      --color-home-box-orange: #332821;
+      --color-home-box-purple: #212131;
       --color-home-box-pink: #332027;
       --color-code-bg: #2a2734;
       --color-rollup-devdoc-list: #4c4c4c;
-      --color-beta: "background: radial-gradient(25.56% 133.51% at 28.36% 45.54%, rgba(255, 143, 80, 0.72) 0%, rgba(255, 143, 80, 0.22) 100%)",
-         --color-card-gradient:
-            linear-gradient(
-               49.21deg,
-               rgba(127, 127, 213, 0.2) 19.87%,
-               rgba(134, 168, 231, 0.2) 58.46%,
-               rgba(145, 234, 228, 0.2) 97.05%
-            );
+      --color-beta: "background: radial-gradient(25.56% 133.51% at 28.36% 45.54%, rgba(255, 143, 80, 0.72) 0%, rgba(255, 143, 80, 0.22) 100%)";
+      --color-card-gradient: linear-gradient(
+         49.21deg,
+         rgba(127, 127, 213, 0.2) 19.87%,
+         rgba(134, 168, 231, 0.2) 58.46%,
+         rgba(145, 234, 228, 0.2) 97.05%
+      );
 
-      --color-off-Background: #181818;
+      --color-off-bg: #181818;
       --color-staking-pill-platform: #cd9df3;
       --color-staking-pill-ui: #ebd27a;
       --color-staking-gold: #f2bb2f;
@@ -292,6 +292,7 @@
       --color-staking-blue-fill: #2b352f;
       --color-staking-red: #d6bbb9;
       --color-staking-red-fill: #313432;
+
       --color-layer2-gradient: linear-gradient(
             83.46deg,
             rgba(127, 127, 213, 0.2) 7.03%,
