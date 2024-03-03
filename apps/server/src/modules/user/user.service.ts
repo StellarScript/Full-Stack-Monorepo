@@ -1,13 +1,13 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { UserRepository } from './user.repository';
 import { PublicProfileDto } from '@appify/dto';
+import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
    private readonly logger = new Logger(UserService.name);
    constructor(private readonly userRepository: UserRepository) {}
 
-   public async userProfile(userId: string): Promise<PublicProfileDto> {
+   public async getProfile(userId: string): Promise<PublicProfileDto> {
       try {
          return await this.userRepository.getAccount(userId);
       } catch (error) {
