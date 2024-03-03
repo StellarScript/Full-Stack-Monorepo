@@ -4,7 +4,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 
-import { isProdEnv } from '@appify/utils';
+import { isProdEnv, originUrl } from '@appify/utils';
 import { JwtAuthGuard } from '@guards/auth.guard';
 import { AppModule } from './app/app.module';
 
@@ -17,7 +17,7 @@ async function bootstrap() {
    const configService = app.get(ConfigService);
 
    const port = configService.get<number>('app.serverPort', 3000);
-   const origin = configService.get<string>('app.frontendUrl', 'http://localhost:3000');
+   const origin = originUrl(port);
 
    app.use(helmet()); // Apply Helmet for security
    app.use(cookieParser());
@@ -39,7 +39,7 @@ async function bootstrap() {
    );
 
    await app.listen(port, () => {
-      Logger.log(`🚀 Application running on: ${origin}:${port}`, 'Bootstrap');
+      Logger.log(`🚀 Application running on: ${origin}`, 'Bootstrap');
       Logger.log(`${isProdEnv() ? '🚀 Production' : '🚧 Development'} environment`, 'Environment');
    });
 

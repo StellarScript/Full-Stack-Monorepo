@@ -20,6 +20,7 @@
          "@routes": ["apps/client/src/routes"],
          "@hooks/*": ["apps/client/src/hooks/*"],
          "@appify/config": ["libs/config/src/index.ts"],
+         "@appify/utils": ["libs/utils/src/index.ts"],
          "@appify/dto": ["libs/dto/src/index.ts"],
          "@provider/*": ["apps/client/src/providers/*"]
       }
