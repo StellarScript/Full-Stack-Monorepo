@@ -22,11 +22,11 @@ interface RdsAuroraProps extends Partial<DatabaseClusterProps> {
 export class RdsAurora extends DatabaseCluster {
    constructor(scope: Construct, id: string, props: RdsAuroraProps) {
       super(scope, id, {
-         writer: ClusterInstance.serverlessV2,
+         writer: ClusterInstance.serverlessV2('writer'),
          engine: DatabaseClusterEngine.auroraPostgres({
-            version: AuroraPostgresEngineVersion.VER_14_8,
+            version: AuroraPostgresEngineVersion.VER_16_1,
          }),
-         vpcSubnets: { subnetType: SubnetType.PRIVATE_ISOLATED },
+         vpcSubnets: { subnetType: SubnetType.PRIVATE_WITH_EGRESS },
          ...props,
       });
 

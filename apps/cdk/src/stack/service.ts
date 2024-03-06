@@ -117,7 +117,7 @@ export class ServiceStack extends Stack {
       });
 
       this.greenTargetGroup = new ApplicationTargetGroup(this, 'GreenTargetGroup', {
-         healthCheck: new HealthCheck({ path: '/api/data' }),
+         healthCheck: new HealthCheck({ path: '/api/health' }),
          protocol: ApplicationProtocol.HTTP,
          targets: [clientTargetGroup],
          port: ServiceConfig.Ports.Client,

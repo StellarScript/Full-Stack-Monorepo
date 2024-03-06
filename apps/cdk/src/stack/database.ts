@@ -1,4 +1,4 @@
-import { CfnOutput, SecretValue, Stack, Stage } from 'aws-cdk-lib';
+import { CfnOutput, RemovalPolicy, SecretValue, Stack, Stage } from 'aws-cdk-lib';
 import { ISecurityGroup, IVpc, Port } from 'aws-cdk-lib/aws-ec2';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 import { Credentials } from 'aws-cdk-lib/aws-rds';
@@ -26,7 +26,6 @@ export class DatabaseStack extends Stack {
       this.vpc = Vpc.vpcLookup(this, 'VpcLookup', ExportParamter.VPC_ID);
 
       this.rdsSG = new SecurityGroup(this, 'RdsSecurityGroup', {
-         allowAllOutbound: true,
          vpc: this.vpc,
       });
 
@@ -45,10 +44,13 @@ export class DatabaseStack extends Stack {
       });
 
       this.rdsDatabase = new RdsAurora(this, 'RdsDatabase', {
+         defaultDatabaseName: 'appifydatabase',
          capacity: new DatabaseCapacity({ minCapacity: 0.5, maxCapacity: 1 }),
          credentials: Credentials.fromSecret(rdsCredentials),
          clusterIdentifier: config.database.identifier,
-         port: +config.database.port,
+         removalPolicy: RemovalPolicy.DESTROY,
+         securityGroups: [this.rdsSG],
+         port: Number(config.database.port),
          vpc: this.vpc,
       });
 
