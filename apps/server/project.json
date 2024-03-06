@@ -11,6 +11,7 @@
          "options": {
             "target": "node",
             "compiler": "tsc",
+            "generatePackageJson": true,
             "outputPath": "dist/apps/server",
             "main": "apps/server/src/main.ts",
             "tsConfig": "apps/server/tsconfig.app.json",
@@ -21,7 +22,9 @@
             "development": {
                "webpackConfig": "apps/server/webpack.hmr.config.js"
             },
-            "production": {}
+            "production": {
+               "webpackConfig": "apps/server/webpack.config.js"
+            }
          }
       },
       "serve": {
@@ -49,6 +52,9 @@
          "options": {
             "config": "apps/server/vitest.config.ts"
          }
+      },
+      "docker-build": {
+         "command": "docker build -f apps/server/Dockerfile . -t server"
       },
       "prisma-generate": {
          "executor": "@nx-tools/nx-prisma:generate",

@@ -9,13 +9,16 @@
          "outputs": ["{options.outputPath}"],
          "defaultConfiguration": "production",
          "options": {
+            "generatePackageJson": true,
             "outputPath": "dist/apps/client"
          },
          "configurations": {
             "development": {
-               "outputPath": "apps/client"
+               "outputPath": "apps/client:development"
             },
-            "production": {}
+            "production": {
+               "outputPath": "apps/client:production"
+            }
          }
       },
       "serve": {
@@ -35,6 +38,9 @@
                "dev": false
             }
          }
+      },
+      "docker-build": {
+         "command": "docker build -f apps/client/Dockerfile . -t client"
       },
       "test": {
          "executor": "@nx/vite:test",
