@@ -10,15 +10,8 @@
          "defaultConfiguration": "production",
          "options": {
             "generatePackageJson": true,
-            "outputPath": "dist/apps/client"
-         },
-         "configurations": {
-            "development": {
-               "outputPath": "apps/client:development"
-            },
-            "production": {
-               "outputPath": "apps/client:production"
-            }
+            "outputPath": "dist/apps/client",
+            "tsConfig": "apps/client/tsconfig.app.json"
          }
       },
       "serve": {

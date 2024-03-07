@@ -9,6 +9,7 @@ export const config = {
       port: process.env['DATABASE_PORT'],
       password: process.env['DATABASE_PASSWORD'],
       identifier: process.env['DATABASE_IDENTIFIER'],
+      url: process.env['DATABASE_URL'],
    },
    cdk: {
       certificateArn: process.env['CERTIFICATE_ARN'],
