@@ -10,7 +10,7 @@ COPY . .
 ARG DOPPLER_TOKEN
 ENV DOPPLER_TOKEN "$DOPPLER_TOKEN"
 
-RUN yarn nx build server --production -skip-nx-cache
+RUN yarn nx build client --production -skip-nx-cache
 
 
 # Production
@@ -22,7 +22,7 @@ RUN wget -q -t3 'https://packages.doppler.com/public/cli/rsa.8004D9FF50437357.ke
     echo 'https://packages.doppler.com/public/cli/alpine/any-version/main' | tee -a /etc/apk/repositories && \
     apk add doppler
 
-COPY --from=builder /app/builder/dist/apps/client .
+COPY --from=builder /app/builder/dist/apps/client ./
 COPY apps/client/scripts/start-client.sh ./script.sh
 RUN yarn install --production
 
