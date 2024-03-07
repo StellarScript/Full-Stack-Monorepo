@@ -70,6 +70,7 @@
       "webpack-node-externals": "^3.0.0"
    },
    "dependencies": {
+      "@clerk/clerk-sdk-node": "^4.13.11",
       "@clerk/nextjs": "^4.29.7",
       "@headlessui/react": "^1.7.18",
       "@nestjs/common": "^10.0.2",
