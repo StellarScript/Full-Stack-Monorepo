@@ -4,6 +4,7 @@ import type { ICertificate } from 'aws-cdk-lib/aws-certificatemanager';
 import type { ApplicationListener } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import type { IApplicationLoadBalancer as IAlb } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 
+import { Secret } from 'aws-cdk-lib/aws-ecs';
 import { SecretValue, Stack } from 'aws-cdk-lib';
 import { Certificate } from 'aws-cdk-lib/aws-certificatemanager';
 import { ListenerAction, ListenerCondition } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
@@ -62,8 +63,8 @@ export class ServiceStack extends Stack {
 
       this.ecsSecrets = new Secrets(this, 'EcsSecrets', {
          secretObjectValue: {
-            databaseUrl: SecretValue.unsafePlainText(databaseUrl),
-            dopplerToken: SecretValue.unsafePlainText(config.dopper.token),
+            DATABASE_URL: SecretValue.unsafePlainText(databaseUrl),
+            TOKEN: SecretValue.unsafePlainText(config.dopper.token),
          },
       });
 
@@ -107,6 +108,10 @@ export class ServiceStack extends Stack {
          // Change to secrets
          environment: {
             DOPPLER_TOKEN: config.dopper.token,
+         },
+         secrets: {
+            DATABASE_URL: Secret.fromSecretsManager(this.ecsSecrets, 'DATABASE_URL'),
+            TOKEN: Secret.fromSecretsManager(this.ecsSecrets, 'TOKEN'),
          },
       });
       this.ecsSecrets.grantRead(this.taskDefinition.taskRole);
