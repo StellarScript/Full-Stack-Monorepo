@@ -1,20 +1,21 @@
-import { Construct } from 'constructs';
-import {
-   EcsDeploymentConfig,
-   EcsDeploymentGroup,
-   IEcsDeploymentConfig,
-} from 'aws-cdk-lib/aws-codedeploy';
-import { FargateService } from 'aws-cdk-lib/aws-ecs';
+import type { Construct } from 'constructs';
+import type { FargateService } from 'aws-cdk-lib/aws-ecs';
+import type { IEcsDeploymentConfig } from 'aws-cdk-lib/aws-codedeploy';
+import type {
+   ApplicationListener,
+   ApplicationTargetGroup,
+} from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+
+import { Stack } from 'aws-cdk-lib';
 import { BuildSpec } from 'aws-cdk-lib/aws-codebuild';
 import { Artifact, Pipeline } from 'aws-cdk-lib/aws-codepipeline';
+import { EcsDeploymentConfig, EcsDeploymentGroup } from 'aws-cdk-lib/aws-codedeploy';
 import { CodeBuildAction, CodeDeployEcsDeployAction } from 'aws-cdk-lib/aws-codepipeline-actions';
-import { ApplicationListener, ApplicationTargetGroup } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 
 import { BuildProjectConstruct } from '@appify/construct/buildProject';
 import { EcrSourceActionConstruct } from '@appify/construct/ecrSourceAction';
 import { Template, TemplateType } from '@appify/construct/deployment-template/index';
 import { ContainerName, ImageTag } from '../config';
-import { Stack } from 'aws-cdk-lib';
 
 export interface EcsDeploymentPipelineProps {
    readonly fargateService: FargateService;
@@ -32,7 +33,7 @@ export class PipelineStack extends Stack {
 
       const { clientSourceAction, serverSourceAction } = this.createSourceActions(
          clientSource,
-         serverSource
+         serverSource,
       );
 
       const buildAction = this.createBuildProject(props.fargateService, buildArtifact, [
@@ -82,13 +83,13 @@ export class PipelineStack extends Stack {
          this,
          ContainerName.Client,
          clientSource,
-         ImageTag.Latest
+         ImageTag.Latest,
       );
       const serverSourceAction = new EcrSourceActionConstruct(
          this,
          ContainerName.Server,
          serverSource,
-         ImageTag.Latest
+         ImageTag.Latest,
       );
       return { clientSourceAction, serverSourceAction };
    }
@@ -96,7 +97,7 @@ export class PipelineStack extends Stack {
    private createDeployAction(
       buildArtifact: Artifact,
       config: IEcsDeploymentConfig,
-      props: EcsDeploymentPipelineProps
+      props: EcsDeploymentPipelineProps,
    ) {
       const deploymentGroup = new EcsDeploymentGroup(this, 'CodeDeployGroup', {
          deploymentConfig: config,

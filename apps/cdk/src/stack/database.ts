@@ -3,14 +3,13 @@ import { CfnOutput, RemovalPolicy, SecretValue, Stack, Stage } from 'aws-cdk-lib
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 import { Credentials } from 'aws-cdk-lib/aws-rds';
 
-import { config } from '@appify/config';
 import { Vpc } from '@appify/construct/vpc';
 import { Tags } from '@appify/construct/tags';
+import { Parameter } from '@appify/construct/parameter';
 import { RdsAurora } from '@appify/construct/rds-aurora';
 import { SecurityGroup } from '@appify/construct/security-group';
 import { DatabaseCapacity } from '@appify/construct/rds-capacity';
-import { ExportParamter } from '../config';
-import { Parameter } from '@appify/construct/parameter';
+import { DatabaseConfig, ExportParamter, Ports } from '../config';
 
 export class DatabaseStack extends Stack {
    public readonly vpc: IVpc;
@@ -23,24 +22,25 @@ export class DatabaseStack extends Stack {
       this.vpc = Vpc.vpcLookup(this, 'VpcLookup', ExportParamter.VPC_ID);
 
       this.rdsSG = new SecurityGroup(this, 'RdsSecurityGroup', {
+         allowAllOutbound: true,
          vpc: this.vpc,
       });
 
       const rdsSecrets = new Secret(this, 'RdsCredentials', {
          secretName: 'RdsCredentials',
          secretObjectValue: {
-            username: new SecretValue(config.database.identifier),
-            password: new SecretValue(config.database.password),
+            username: new SecretValue(DatabaseConfig.identifier),
+            password: new SecretValue(DatabaseConfig.password),
          },
       });
 
       this.rdsDatabase = new RdsAurora(this, 'RdsDatabase', {
-         defaultDatabaseName: 'appifydatabase',
+         defaultDatabaseName: DatabaseConfig.identifier,
          capacity: new DatabaseCapacity({ minCapacity: 0.5, maxCapacity: 1 }),
          credentials: Credentials.fromSecret(rdsSecrets),
-         clusterIdentifier: config.database.identifier,
+         clusterIdentifier: DatabaseConfig.identifier,
          removalPolicy: RemovalPolicy.DESTROY,
-         port: Number(config.database.port),
+         port: Number(Ports.Database),
          securityGroups: [this.rdsSG],
          vpc: this.vpc,
       });

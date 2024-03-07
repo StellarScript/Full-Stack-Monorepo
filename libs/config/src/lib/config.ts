@@ -3,6 +3,7 @@ export const config = {
       environment: process.env['ENVIRONMENT'],
       serverPort: process.env['SERVER_PORT'],
       frontendPort: process.env['FRONTEND_PORT'],
+      securePort: process.env['SECURE_PORT'],
       origin: process.env['ORIGIN'],
    },
    database: {

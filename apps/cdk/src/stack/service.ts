@@ -6,8 +6,8 @@ import type { IApplicationLoadBalancer as IAlb } from 'aws-cdk-lib/aws-elasticlo
 
 import { Stack } from 'aws-cdk-lib';
 import { Certificate } from 'aws-cdk-lib/aws-certificatemanager';
-import { ApplicationProtocol, ApplicationTargetGroup } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import { ListenerAction, ListenerCondition } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import { ApplicationProtocol, ApplicationTargetGroup } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 
 import { Vpc } from '@appify/construct/vpc';
 import { Alb } from '@appify/construct/alb';
@@ -18,15 +18,14 @@ import { HealthCheck } from '@appify/construct/health-check';
 import { ServiceContainer } from '@appify/construct/container';
 import { FargateService } from '@appify/construct/fargate-service';
 
+import { config } from '@appify/config';
+import { Secrets } from '@appify/construct/secrets';
 import { Cluster } from '@appify/construct/cluster';
+import { RdsAurora } from '@appify/construct/rds-aurora';
 import { AutoScalingGroup } from '@appify/construct/autoscaling';
 import { AsgCapacityProvider } from '@appify/construct/asg-capacity';
 import { FargateTaskDefinition } from '@appify/construct/task-definition';
-
-import { config } from '@appify/config';
-import { ServiceConfig, ContainerName, ImageTag, ExportParamter } from '../config';
-import { RdsAurora } from '@appify/construct/rds-aurora';
-import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
+import { Ports, ServiceConfig, ContainerName, ImageTag, ExportParamter } from '../config';
 
 export class ServiceStack extends Stack {
    public readonly vpc: IVpc;
@@ -77,20 +76,20 @@ export class ServiceStack extends Stack {
       });
 
       new ServiceContainer(this.taskDefinition, ContainerName.Server, {
-         portMappings: [{ containerPort: ServiceConfig.Ports.Server }],
+         portMappings: [{ containerPort: Ports.Server }],
          tag: ImageTag.Latest,
          log: true,
          essential: false,
          environment: {
             DOPPLER_TOKEN: config.dopper.token,
             DATABASE_URL: RdsAurora.databaseURIFromSecret(
-               Secret.fromSecretNameV2(this, 'RdsSecret', ExportParamter.RDS_SECRET),
+               Secrets.fromSecretNameParameter(this, 'RdsSecret', ExportParamter.RDS_SECRET),
                config.database.rdsEndpoint,
             ),
          },
       });
       new ServiceContainer(this.taskDefinition, ContainerName.Client, {
-         portMappings: [{ containerPort: ServiceConfig.Ports.Client }],
+         portMappings: [{ containerPort: Ports.Client }],
          tag: ImageTag.Latest,
          essential: true,
          log: true,
@@ -114,14 +113,14 @@ export class ServiceStack extends Stack {
 
       const clientTargetGroup = this.fargateService.loadBalancerTarget({
          containerName: ContainerName.Client,
-         containerPort: ServiceConfig.Ports.Client,
+         containerPort: Ports.Client,
       });
 
       this.blueTargetGroup = new ApplicationTargetGroup(this, 'BlueTargetGroup', {
          healthCheck: new HealthCheck({ path: '/' }),
          protocol: ApplicationProtocol.HTTP,
          targets: [clientTargetGroup],
-         port: ServiceConfig.Ports.Client,
+         port: Ports.Client,
          vpc: this.vpc,
       });
 
@@ -129,18 +128,18 @@ export class ServiceStack extends Stack {
          healthCheck: new HealthCheck({ path: '/api/health' }),
          protocol: ApplicationProtocol.HTTP,
          targets: [clientTargetGroup],
-         port: ServiceConfig.Ports.Client,
+         port: Ports.Client,
          vpc: this.vpc,
       });
 
       this.testListener = this.alb.addListener('TestListener', {
-         port: ServiceConfig.Ports.Client,
+         port: Ports.Client,
          protocol: ApplicationProtocol.HTTP,
       });
 
       this.secureListener = this.alb.addListener('SecureListener', {
          certificates: [this.certificate],
-         port: ServiceConfig.Ports.Secure,
+         port: Ports.Secure,
          open: true,
       });
 
@@ -156,7 +155,7 @@ export class ServiceStack extends Stack {
          priority: 1,
          conditions: [ListenerCondition.pathPatterns(['*'])],
          action: ListenerAction.redirect({
-            port: ServiceConfig.Ports.Secure.toString(),
+            port: Ports.Secure.toString(),
             protocol: ApplicationProtocol.HTTPS,
          }),
       });

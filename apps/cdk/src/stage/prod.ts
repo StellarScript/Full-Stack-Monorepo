@@ -2,11 +2,11 @@ import type { App } from 'aws-cdk-lib';
 import { Stage } from 'aws-cdk-lib';
 import { Port } from 'aws-cdk-lib/aws-ec2';
 
-import { StackIdentifier } from '../config';
 import { ServiceStack } from '../stack/service';
 import { ResourceStack } from '../stack/resource';
 import { PipelineStack } from '../stack/pipeline';
 import { DatabaseStack } from '../stack/database';
+import { StackIdentifier } from '../config';
 
 export class ProdStage extends Stage {
    public readonly resourceStack: ResourceStack;
@@ -42,12 +42,6 @@ export class ProdStage extends Stage {
          listener: this.serviceStack.secureListener,
       });
 
-      if (this.serviceStack.serviceSG) {
-         this.databaseStack.rdsSG.addIngressRule(
-            this.serviceStack.serviceSG,
-            Port.tcp(5432),
-            'allow ecs service access to rds',
-         );
-      }
+      this.serviceStack.serviceSG.connections.allowTo(this.databaseStack.rdsSG, Port.allTraffic());
    }
 }

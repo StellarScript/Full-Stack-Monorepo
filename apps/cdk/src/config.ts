@@ -1,3 +1,5 @@
+import { config } from '@appify/config';
+
 export enum ContainerName {
    Server = 'server',
    Client = 'client',
@@ -22,14 +24,20 @@ export enum StackIdentifier {
    DatabaseStack = 'database',
 }
 
+export class Ports {
+   static Secure = Number(config.app.securePort);
+   static Server = Number(config.app.serverPort);
+   static Client = Number(config.app.frontendPort);
+   static Database = Number(config.database.port);
+}
+
 export class ServiceConfig {
    public static readonly FamilyName: 'appify-service';
    public static readonly MemoryLimitMiB: 512;
    public static readonly Cpu: 256;
+}
 
-   static Ports = {
-      Server: 8080,
-      Client: 3000,
-      Secure: 443,
-   };
+export class DatabaseConfig {
+   static identifier = config.database.identifier;
+   static password = config.database.password;
 }

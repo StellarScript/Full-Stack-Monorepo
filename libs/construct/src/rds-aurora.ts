@@ -1,5 +1,7 @@
-import { Construct } from 'constructs';
-import { Aspects } from 'aws-cdk-lib';
+import type { Construct } from 'constructs';
+import type { IVpc } from 'aws-cdk-lib/aws-ec2';
+import type { ISecret } from 'aws-cdk-lib/aws-secretsmanager';
+
 import {
    Credentials,
    CfnDBCluster,
@@ -9,9 +11,9 @@ import {
    DatabaseClusterEngine,
    AuroraPostgresEngineVersion,
 } from 'aws-cdk-lib/aws-rds';
-import { IVpc, SubnetType } from 'aws-cdk-lib/aws-ec2';
+import { Aspects } from 'aws-cdk-lib';
+import { SubnetType } from 'aws-cdk-lib/aws-ec2';
 import { DatabaseCapacity } from './rds-capacity';
-import { ISecret } from 'aws-cdk-lib/aws-secretsmanager';
 
 interface RdsAuroraProps extends Partial<DatabaseClusterProps> {
    port: number;
@@ -42,7 +44,8 @@ export class RdsAurora extends DatabaseCluster {
       });
    }
 
-   public static databaseURIFromSecret(secret: ISecret, host: string): string {
-      return `postgresql://${secret.secretValueFromJson('username')}:${secret.secretValueFromJson('password')}@${host}:${secret.secretValueFromJson('port')}/${secret.secretValueFromJson('dbname')}`;
+   public static databaseURIFromSecret(secret: ISecret, hostEndpoint: string): string {
+      const getValue = (key: string) => secret.secretValueFromJson(key).toString();
+      return `postgresql://${getValue('username')}:${getValue('password')}@${hostEndpoint}:${getValue('port')}/${getValue('dbname')}`;
    }
 }
