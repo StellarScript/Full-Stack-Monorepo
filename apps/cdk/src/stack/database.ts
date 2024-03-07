@@ -22,6 +22,7 @@ export class DatabaseStack extends Stack {
       this.vpc = Vpc.vpcLookup(this, 'VpcLookup', ExportParamter.VPC_ID);
 
       this.rdsSG = new SecurityGroup(this, 'RdsSecurityGroup', {
+         description: 'RDS Security Group',
          allowAllOutbound: true,
          vpc: this.vpc,
       });

@@ -4,7 +4,7 @@ import type { ICertificate } from 'aws-cdk-lib/aws-certificatemanager';
 import type { ApplicationListener } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import type { IApplicationLoadBalancer as IAlb } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 
-import { Stack } from 'aws-cdk-lib';
+import { SecretValue, Stack } from 'aws-cdk-lib';
 import { Certificate } from 'aws-cdk-lib/aws-certificatemanager';
 import { ListenerAction, ListenerCondition } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import { ApplicationProtocol, ApplicationTargetGroup } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
@@ -44,6 +44,7 @@ export class ServiceStack extends Stack {
    public readonly secureListener: ApplicationListener;
    public readonly blueTargetGroup: ApplicationTargetGroup;
    public readonly greenTargetGroup: ApplicationTargetGroup;
+   public readonly ecsSecrets: Secrets;
 
    constructor(scope: Stage, id: string, props?: Cdk.StackProps) {
       super(scope, id, props);
@@ -53,6 +54,18 @@ export class ServiceStack extends Stack {
       this.alb = Alb.albLookup(this, 'AlbLookup', ExportParamter.ALB_ARN);
       this.albSG = SecurityGroup.securityGroupLookup(this, 'SGLookup', ExportParamter.ALB_SG);
       this.certificate = Certificate.fromCertificateArn(this, 'CertLookup', config.cdk.certificateArn);
+
+      const databaseUrl = RdsAurora.databaseURIFromSecret(
+         Secrets.fromSecretNameParameter(this, 'RdsSecret', ExportParamter.RDS_SECRET),
+         config.database.rdsEndpoint,
+      );
+
+      this.ecsSecrets = new Secrets(this, 'EcsSecrets', {
+         secretObjectValue: {
+            databaseUrl: SecretValue.unsafePlainText(databaseUrl),
+            dopplerToken: SecretValue.unsafePlainText(config.dopper.token),
+         },
+      });
 
       this.autoscalingGroup = new AutoScalingGroup(this, 'AutoscalingGroup', {
          vpc: this.vpc,
@@ -80,12 +93,10 @@ export class ServiceStack extends Stack {
          tag: ImageTag.Latest,
          log: true,
          essential: false,
+         // Change to secrets
          environment: {
             DOPPLER_TOKEN: config.dopper.token,
-            DATABASE_URL: RdsAurora.databaseURIFromSecret(
-               Secrets.fromSecretNameParameter(this, 'RdsSecret', ExportParamter.RDS_SECRET),
-               config.database.rdsEndpoint,
-            ),
+            DATABASE_URL: databaseUrl,
          },
       });
       new ServiceContainer(this.taskDefinition, ContainerName.Client, {
@@ -93,10 +104,12 @@ export class ServiceStack extends Stack {
          tag: ImageTag.Latest,
          essential: true,
          log: true,
+         // Change to secrets
          environment: {
             DOPPLER_TOKEN: config.dopper.token,
          },
       });
+      this.ecsSecrets.grantRead(this.taskDefinition.taskRole);
 
       this.serviceSG = new SecurityGroup(this, 'ServiceSecurityGroup', {
          description: 'Ecs Fargate Service Security Group',

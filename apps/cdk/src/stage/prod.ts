@@ -2,11 +2,11 @@ import type { App } from 'aws-cdk-lib';
 import { Stage } from 'aws-cdk-lib';
 import { Port } from 'aws-cdk-lib/aws-ec2';
 
+import { Ports, StackIdentifier } from '../config';
 import { ServiceStack } from '../stack/service';
 import { ResourceStack } from '../stack/resource';
 import { PipelineStack } from '../stack/pipeline';
 import { DatabaseStack } from '../stack/database';
-import { StackIdentifier } from '../config';
 
 export class ProdStage extends Stage {
    public readonly resourceStack: ResourceStack;
@@ -42,6 +42,11 @@ export class ProdStage extends Stage {
          listener: this.serviceStack.secureListener,
       });
 
-      this.serviceStack.serviceSG.connections.allowTo(this.databaseStack.rdsSG, Port.allTraffic());
+      this.serviceStack.serviceSG.connections.allowTo(
+         this.databaseStack.rdsDatabase,
+         Port.tcp(Ports.Database),
+         'allow from rds',
+      );
+      this.databaseStack.rdsSG.connections.allowFrom(this.resourceStack.albSG, Port.tcp(Ports.Database));
    }
 }
