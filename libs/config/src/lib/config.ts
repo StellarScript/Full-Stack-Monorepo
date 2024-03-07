@@ -10,6 +10,7 @@ export const config = {
       password: process.env['DATABASE_PASSWORD'],
       identifier: process.env['DATABASE_IDENTIFIER'],
       url: process.env['DATABASE_URL'],
+      rdsEndpoint: process.env['RDS_ENDPOINT'],
    },
    cdk: {
       certificateArn: process.env['CERTIFICATE_ARN'],

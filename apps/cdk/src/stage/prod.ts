@@ -42,7 +42,7 @@ export class ProdStage extends Stage {
          listener: this.serviceStack.secureListener,
       });
 
-      if (this.databaseStack.rdsSG) {
+      if (this.serviceStack.serviceSG) {
          this.databaseStack.rdsSG.addIngressRule(
             this.serviceStack.serviceSG,
             Port.tcp(5432),

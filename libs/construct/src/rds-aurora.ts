@@ -11,6 +11,7 @@ import {
 } from 'aws-cdk-lib/aws-rds';
 import { IVpc, SubnetType } from 'aws-cdk-lib/aws-ec2';
 import { DatabaseCapacity } from './rds-capacity';
+import { ISecret } from 'aws-cdk-lib/aws-secretsmanager';
 
 interface RdsAuroraProps extends Partial<DatabaseClusterProps> {
    port: number;
@@ -39,5 +40,9 @@ export class RdsAurora extends DatabaseCluster {
             }
          },
       });
+   }
+
+   public static databaseURIFromSecret(secret: ISecret, host: string): string {
+      return `postgresql://${secret.secretValueFromJson('username')}:${secret.secretValueFromJson('password')}@${host}:${secret.secretValueFromJson('port')}/${secret.secretValueFromJson('dbname')}`;
    }
 }

@@ -13,6 +13,7 @@ export enum ExportParamter {
    VPC_ID = 'VpcId-ExportParamter',
    ALB_SG = 'AlbSG-ExportParamter',
    ALB_ARN = 'AlbArn-ExportParamter',
+   RDS_SECRET = 'RdsSecret-ExportParamter',
 }
 
 export enum StackIdentifier {

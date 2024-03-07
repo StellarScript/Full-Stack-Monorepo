@@ -9,9 +9,6 @@ import { Certificate } from 'aws-cdk-lib/aws-certificatemanager';
 import { ApplicationProtocol, ApplicationTargetGroup } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import { ListenerAction, ListenerCondition } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 
-import { config } from '@appify/config';
-import { ServiceConfig, ContainerName, ImageTag, ExportParamter } from '../config';
-
 import { Vpc } from '@appify/construct/vpc';
 import { Alb } from '@appify/construct/alb';
 import { SecurityGroup } from '@appify/construct/security-group';
@@ -25,6 +22,11 @@ import { Cluster } from '@appify/construct/cluster';
 import { AutoScalingGroup } from '@appify/construct/autoscaling';
 import { AsgCapacityProvider } from '@appify/construct/asg-capacity';
 import { FargateTaskDefinition } from '@appify/construct/task-definition';
+
+import { config } from '@appify/config';
+import { ServiceConfig, ContainerName, ImageTag, ExportParamter } from '../config';
+import { RdsAurora } from '@appify/construct/rds-aurora';
+import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 
 export class ServiceStack extends Stack {
    public readonly vpc: IVpc;
@@ -81,6 +83,10 @@ export class ServiceStack extends Stack {
          essential: false,
          environment: {
             DOPPLER_TOKEN: config.dopper.token,
+            DATABASE_URL: RdsAurora.databaseURIFromSecret(
+               Secret.fromSecretNameV2(this, 'RdsSecret', ExportParamter.RDS_SECRET),
+               config.database.rdsEndpoint,
+            ),
          },
       });
       new ServiceContainer(this.taskDefinition, ContainerName.Client, {
@@ -88,6 +94,9 @@ export class ServiceStack extends Stack {
          tag: ImageTag.Latest,
          essential: true,
          log: true,
+         environment: {
+            DOPPLER_TOKEN: config.dopper.token,
+         },
       });
 
       this.serviceSG = new SecurityGroup(this, 'ServiceSecurityGroup', {
