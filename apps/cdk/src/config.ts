@@ -24,11 +24,11 @@ export enum StackIdentifier {
    DatabaseStack = 'database',
 }
 
-export class Ports {
-   static Secure = Number(config.app.securePort);
-   static Server = Number(config.app.serverPort);
-   static Client = Number(config.app.frontendPort);
-   static Database = Number(config.database.port);
+export enum Ports {
+   Server = 8080,
+   Client = 3000,
+   Secure = 443,
+   Database = 5432,
 }
 
 export class ServiceConfig {
