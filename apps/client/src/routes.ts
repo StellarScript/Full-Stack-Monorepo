@@ -7,7 +7,8 @@ export enum Routes {
 
 export enum ApiRoutes {
    HEALTH = "/api/health",
+   SIGNUP = "/api/signup",
 }
 
-export const PUBLIC_ROUTES = [Routes.ROOT, Routes.LOGIN, Routes.SIGNUP, ApiRoutes.HEALTH];
+export const PUBLIC_ROUTES = [Routes.ROOT, Routes.LOGIN, Routes.SIGNUP, ApiRoutes.HEALTH, ApiRoutes.SIGNUP];
 export const PRIVATE_ROUTES = [Routes.DASHBOARD];

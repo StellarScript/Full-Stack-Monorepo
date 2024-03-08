@@ -1,13 +1,16 @@
+import type { User } from '@prisma/client';
+
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { PrismaProvider } from '@providers/prisma/prisma.provider';
 import { CreateUserWebhookDto, PublicProfileDto } from '@appify/dto';
+import { PrismaProvider } from '@providers/prisma/prisma.provider';
+import { errorMessage } from '@appify/utils';
 
 @Injectable()
 export class UserRepository {
    private readonly logger = new Logger(UserRepository.name);
    constructor(private readonly prisma: PrismaProvider) {}
 
-   public async createAccount(data: CreateUserWebhookDto) {
+   public async createAccount(data: CreateUserWebhookDto): Promise<User> {
       const primaryEmail = data.email_addresses.find(
          (e) => e.id === data.primary_email_address_id,
       ).email_address;
@@ -30,7 +33,8 @@ export class UserRepository {
             },
          });
       } catch (error) {
-         throw new Error(error);
+         this.logger.error(`Create User Account Error: ${errorMessage(error)}`);
+         throw new Error('Create User Account Error');
       }
    }
 
@@ -45,8 +49,8 @@ export class UserRepository {
             },
          });
       } catch (error) {
-         this.logger.error(`User not found: ${error}`);
-         throw new Error(error);
+         this.logger.error(`User not found: ${errorMessage(error)}`);
+         throw new Error('User not found');
       }
    }
 }

@@ -4,7 +4,6 @@ import {
    IsNumber,
    IsBoolean,
    IsArray,
-   isNotEmpty,
    IsObject,
    ValidateIf,
 } from 'class-validator';
@@ -195,4 +194,18 @@ export class CreateUserWebhookDto {
 
    @IsArray()
    web3_wallets!: object[];
+}
+
+export class WebhookRequestDto<T = object> {
+   @IsString()
+   @IsNotEmpty()
+   data!: T;
+
+   @IsString()
+   @IsNotEmpty()
+   object!: string;
+
+   @IsString()
+   @IsNotEmpty()
+   type!: string;
 }
