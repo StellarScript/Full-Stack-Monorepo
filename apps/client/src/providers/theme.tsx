@@ -7,16 +7,24 @@ type ThemeProps = React.PropsWithChildren<{
    className?: string;
 }>;
 
-const initialState = {
-   theme: "",
-   toggle: () => {},
-};
-export const ThemeContext = createContext<typeof initialState>(initialState);
+interface ThemeContextType {
+   theme: string;
+   toggle: () => void;
+}
 
-export const useTheme = () => useContext(ThemeContext);
+const initialState: ThemeContextType = {
+   theme: "",
+   toggle: () => {
+      return;
+   },
+};
+
+export const ThemeContext = createContext<ThemeContextType>(initialState);
+
+export const useTheme = (): ThemeContextType => useContext(ThemeContext);
 
 export const ThemeProvider: React.FC<ThemeProps> = ({ children, className }) => {
-   const [theme, setTheme] = useState("");
+   const [theme, setTheme] = useState<string>("");
 
    const toggle = () => {
       setTheme(theme === "dark" ? "" : "dark");
@@ -24,7 +32,7 @@ export const ThemeProvider: React.FC<ThemeProps> = ({ children, className }) => 
 
    return (
       <ThemeContext.Provider value={{ theme, toggle }}>
-         <body className={cn(theme, className)}>{children}</body>
+         <div className={cn(theme, className)}>{children}</div>
       </ThemeContext.Provider>
    );
 };

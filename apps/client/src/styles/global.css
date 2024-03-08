@@ -6,51 +6,26 @@
    /* Base Colors */
    --color-white: #ffffff;
    --color-black: #000000;
+   --color-yellow: #fff8df;
+   --color-red: #ef7d7d;
+   --color-pink: #ffe5f9;
+
+   --color-fail: #b80000;
+   --color-success: #109e62;
+
    --color-primary-light: #1c1cff;
    --color-primary-dark: #ff7324;
-   --color-success: #109e62;
-   --color-fail: #b80000;
-   --color-turquoise: #ccfcff;
-   --color-turquoise-dark: #293233;
-   --color-yellow: #fff8df;
    --color-mint: #e1fefa;
    --color-mint-dark: #2d3332;
-   --color-box-dark: #2a2734;
-   --color-box-light: #fafafa;
-   --color-purple-dark: #212131;
-   --color-orange-dark: #332821;
-   --color-pink: #ffe5f9;
-   --color-pink-dark: #332027;
-   --color-grid-yellow: #ffe78e;
-   --color-red: #ef7d7d;
-   --color-grid-blue: #a7d0f4;
-   --color-grid-pink: #ffa1c3;
 
-   /* Light Mode */
-   --color-button-color: #ffffff;
+   /* 
+   *
+   * Light Mode
+   *
+   */
 
-   --color-upgrades-gradient: linear-gradient(
-      285.24deg,
-      #f7cbc0 0%,
-      #f4b1ab 29.8%,
-      #8476d9 49.78%,
-      #85acf9 54.14%,
-      #1c1ce1 61.77%,
-      #000000 69.77%
-   );
-   --color-run-node-gradient: linear-gradient(0deg, rgba(153, 157, 244, 0.1) 0%, rgba(153, 157, 244, 0) 100%),
-      linear-gradient(
-         270.72deg,
-         #fdf0ff 0.62%,
-         rgba(236, 195, 195, 0.557292) 32.61%,
-         rgba(207, 189, 230, 0.296875) 49.67%,
-         rgba(196, 196, 196, 0) 72.88%
-      );
-   --color-run-node-gradient2: linear-gradient(135deg, rgba(79, 113, 235, 0.2) 9.8%, rgba(232, 79, 235, 0.2) 92.84%);
-   --color-ghost-card-bg: #ffffff;
-   --color-ghost-card-ghost: #f7f7f7;
-   --color-secondary-button-bg-active: #e5e5e5;
-   --color-primary: #1c1cff;
+   /* Primary */
+   --color-primary: var(--color-primary-light);
    --color-primary-950: #040426;
    --color-primary-900: #050532;
    --color-primary-800: #0b0b66;
@@ -63,143 +38,34 @@
    --color-primary-100: #d1d1ff;
    --color-primary-hover: rgba(28, 28, 225, 0.8);
    --color-primary-active: #1616cc;
-   --color-light-border: #ececec;
-   --color-price-card-bg-positive: linear-gradient(0, rgba(207, 236, 224, 0.6) 0%, rgba(207, 236, 224, 0) 100%);
-   --color-price-card-bg-negative: linear-gradient(180deg, rgba(241, 204, 204, 0.4) 0%, rgba(241, 204, 204, 0) 100%);
-   --price-card-border: #ececec;
-   --color-price-card-border-negative: #ececec;
-   --color-search-border: #7f7f7f;
-   --color-search-bg: #ffffff;
-   --color-search-bg-empty: #f2f2f2;
-   --color-search-result-text: #33363d;
-   --color-search-result-bg: #f1f3f5;
-   --color-select-hover: #d1d1ff;
-   --color-select-active: #a4a4ff;
-   --color-dropdown-bg: #ffffff;
-   --color-dropdown-bg-hover: #f2f2f2;
-   --color-dropdown-border: #e5e5e5;
-   --color-mark-bg: rgba(143, 187, 237, 0.1);
-   --color-mark-underline: rgba(143, 187, 237, 0.5);
-   --color-modal-bg: hsla(0, 0%, 69.8%, 0.9);
 
+   /* Secondary */
+   --color-secondary: #e5e5e5;
+   --color-divider: #a4a4f3;
+
+   /* Typography */
    --color-text: #333333;
+   --color-text-100: #33363d;
    --color-text-200: #666666;
    --color-text-300: #4c4c4c;
-   --color-text-table-of-contents: #7f7f7f;
-   --color-bg: #ffffff;
-   --color-edn-bg: #f7f7f7;
-   --color-layer2-content-secondary: #e5e5e5;
-   --color-border: #e5e5e5;
-   --color-table-box-shadow: 0 14px 66px rgba(0, 0, 0, 0.07), 0 10px 17px rgba(0, 0, 0, 0.03),
-      0 4px 7px rgba(0, 0, 0, 0.05);
+   --color-text-400: #7f7f7f;
 
-   --color-table-item-box-shadow: rgba(0, 0, 0, 0.1);
-   --color-table-bg-hover: #f2f2f2;
-   --color-pre-bg: #f2f2f2;
-   --color-pre-border: rgba(0, 0, 0, 0.05);
-   --color-home-divider: #a4a4f3;
-   --color-display-dark: none;
-   --color-display-light: block;
-   --color-gray-bg: #fcfcfc;
-   --color-card-gradient: radial-gradient(46.28% 66.31% at 66.95% 58.35%, #e6e6f7 0%, #e7edfa 50%, #e9fbfa 100%);
-   --color-upgrade-status-bg: linear-gradient(180deg, rgba(0, 240, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%),
-      linear-gradient(0deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), #1c1ce1;
-   --color-upgrade-status-shipped-bg: linear-gradient(180deg, rgba(0, 240, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%),
-      linear-gradient(0deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), #109e62;
-   --color-upgrade-status-border: none;
-   --color-upgrade-status-shipped-border: none;
-   --color-warning: #ffe3d3;
-   --color-warning-link: #994515;
-   --color-warning-link-hover: #321607;
-   --color-tag-mint: #e1fefa;
-   --color-mainnet: #9fd8c0;
-
-   --color-mainnet-border: #7f7f7f;
-   --color-beacon-chain: #ccfcff;
-   --color-beacon-chain-border: #7f7f7f;
-   --color-shard: #ffe3d3;
-   --color-shard-border: #7f7f7f;
-   --color-info-link: #0b0b66;
-   --color-info-link-hover: #050532;
-   --color-card-box-shadow: 4px 4px 0px 0px #d2d2f9;
-   --color-home-box-mint: #e1fefa;
-   --color-home-box-turquoise: #ccfcff;
-   --color-home-box-orange: #ffe3d3;
-   --color-home-box-purple: #e8e8ff;
-   --color-home-box-pink: #ffe5f9;
-   --color-code-bg: #fafafa;
-   --color-rollup-devdoc-list: #e8e8ff;
-
-   --color-beta: radial-gradient(
-      25.56% 133.51% at 28.36% 45.54%,
-      rgba(28, 28, 225, 0) 0%,
-      rgba(28, 28, 225, 0.06) 100%
+   /* Gradients */
+   --color-upgrades-gradient: linear-gradient(
+      285.24deg,
+      #f7cbc0 0%,
+      #f4b1ab 29.8%,
+      #8476d9 49.78%,
+      #85acf9 54.14%,
+      #1c1ce1 61.77%,
+      #000000 69.77%
    );
-   --color-off-bg: #f7f7f7;
-   --color-staking-pill-platform: #cd9df3;
-   --color-staking-pill-ui: #ebd27a;
-   --color-staking-gold: #be8d10;
-   --color-staking-gold-fill: #fef9ef;
-   --color-staking-green: #129e5b;
-   --color-staking-greenFill: #f7faf1;
-   --color-staking-blue: #0b83dc;
-   --color-staking-blue-fill: #f1fcf5;
-   --color-staking-red: #a0524c;
-   --color-staking-red-fill: #f8fbf9;
-   --color-layer2-gradient: linear-gradient(
-      85.12deg,
-      rgba(185, 185, 241, 0.2) 0%,
-      rgba(84, 132, 234, 0.2) 56.29%,
-      rgba(58, 142, 137, 0.2) 99.99%
-   );
-   --color-feed-back-gradient: linear-gradient(
-      102.7deg,
-      rgba(185, 185, 241, 0.2) 0%,
-      rgba(84, 132, 234, 0.2) 51.56%,
-      rgba(58, 142, 137, 0.2) 100%
-   );
-   --color-banner-grid-gradient: linear-gradient(
-      90deg,
-      rgba(127, 127, 213, 0.2) 0%,
-      rgba(132, 145, 221, 0.2) 50%,
-      rgba(145, 234, 228, 0.2) 100%
-   );
-   --color-slider-bg: #f7f7f7;
-   --color-slider-border: #ececec;
-   --color-slider-dot: #a4a4a4;
-   --color-slider-dot-active: #1c1dff;
-   --color-slider-btn-bg: #a4a4a4;
-   --color-slider-btn-color: white;
-   --color-slider-btn-bg-disabled: #e7e7e7;
-   --color-slider-btn-color-disabled: #737373;
 }
 
 @layer utilities {
    .dark {
-      --color-button-color: #333;
-      --color-upgrades-gradient: linear-gradient(
-         285.24deg,
-         #f7cbc0 0%,
-         #fbeae3 17.81%,
-         #f4b1ab 29.8%,
-         #8476d9 49.78%,
-         #8db4ff 69.77%
-      );
-      --color-run-node-gradient: linear-gradient(0deg, rgba(153, 157, 244, 0.35) 0%, rgba(153, 157, 244, 0) 100%),
-         linear-gradient(
-            89.24deg,
-            rgba(253, 240, 255, 0.7) -64.3%,
-            rgba(212, 119, 119, 0.390104) -7.43%,
-            rgba(188, 163, 220, 0.207813) 46.66%,
-            rgba(196, 196, 196, 0) 99.16%
-         );
-      --color-run-node-gradient2: linear-gradient(135deg, rgba(79, 113, 235, 0.2) 9.8%, rgba(232, 79, 235, 0.2) 92.84%);
-      --color-primary-hover: #ff8f4f;
-      --color-primary-active: #ffc7a7;
-      --color-ghost-card-bg: #333;
-      --color-ghost-card-ghost: #7f7f7f;
-      --color-secondary-button-bg-active: #333;
-      --color-primary: #ff7324;
+      /* Primary */
+      --color-primary: var(--color-primary-dark);
       --color-primary-950: #190b03;
       --color-primary-900: #321607;
       --color-primary-800: #662e0e;
@@ -210,109 +76,28 @@
       --color-primary-300: #ffab7b;
       --color-primary-200: #ffc7a7;
       --color-primary-100: #ffe3d3;
-      --color-light-border: #404040;
-      --color-price-card-bg-positive: transparent;
-      --color-price-card-bg-negative: transparent;
-      --color-price-card-bg: transparent;
-      --color-price-card-border: #095e3a;
-      --color-price-card-border-negative: #d46666;
-      --color-search-border: #b2b2b2;
-      --color-search-bg: #4c4c4c;
-      --color-search-bg-empty: #333333;
-      --color-search-result-text: #f1f3f5;
-      --color-search-result-bg: #33363d;
-      --color-select-hover: #994515;
-      --color-select-active: #cc5c1c;
-      --color-dropdown-bg: #191919;
-      --color-dropdown-bg-hover: #000000;
-      --color-dropdown-border: #333333;
-      --color-mark-bg: rgb(255; 115; 36; 0.1);
-      --color-mark-underline: rgb(255; 115; 36; 0.5);
-      --color-modal-bg: rgba(25, 25, 25, 0.8);
+      --color-primary-hover: #ff8f4f;
+      --color-primary-active: #ffc7a7;
+
+      /* Secondary */
+      --color-secondary: #333;
+      --color-divider: #ffc7a7;
+
+      /* Typography */
       --color-text: #f2f2f2;
+      --color-text-100: #f1f3f5;
       --color-text-200: #b2b2b2;
       --color-text-300: #cccccc;
-      --color-text-table-of-contents: hsla(0, 0%, 69.8%, 0.8);
-      --color-bg: #222222;
-      --color-edn-bg: #191919;
-      --color-layer2-content-secondary: #333;
-      --color-border: #333;
-      --color-table-box-shadow: 0 14px 66px hsla(0, 0%, 96.1%, 0.07), 0 10px 17px hsla(0, 0%, 96.1%, 0.03),
-         0 4px 7px hsla(0, 0%, 96.1%, 0.05);
+      --color-text-400: hsla(0, 0%, 69.8%, 0.8);
 
-      --color-table-item-box-shadow: hsla(0, 0%, 100%, 0.1);
-      --color-table-bg-hover: rgba(255, 115, 36, 0.013);
-      --color-pre-bg: #191919;
-      --color-pre-border: hsla(0, 0%, 100%, 0.05);
-      --color-home-divider: #ffc7a7;
-      --color-display-dark: block;
-      --color-display-light: none;
-      --color-gray-bg: #272627;
-      --color-upgrade-status-bg: #222222;
-      --color-upgrade-status-shipped-bg: #222222;
-      --color-upgrade-status-border: #a4a4ff solid 2px;
-      --color-upgrade-Status-shipped-border: #3fb181 solid 2px;
-      --color-warning: #ffe3d3;
-      --color-warning-link: #994515;
-      --color-warning-link-hover: #321607;
-      --color-tag-mint: #e1fefa;
-      --color-mainnet: #222222;
-      --color-mainnet-border: success300;
-      --color-beacon-chain: #222222;
-      --color-beacon-chain-border: pink;
-      --color-shard: #222222;
-      --color-shard-border: #ff7324;
-      --color-info-link: #0b0b66;
-      --color-info-link-hover: #050532;
-      --color-card-box-shadow: 4px 4px 0px 0px #ffab7c;
-      --color-home-box-mint: #2d3332;
-
-      --color-home-box-Turquoise: #293233;
-      --color-home-box-orange: #332821;
-      --color-home-box-purple: #212131;
-      --color-home-box-pink: #332027;
-      --color-code-bg: #2a2734;
-      --color-rollup-devdoc-list: #4c4c4c;
-      --color-beta: "background: radial-gradient(25.56% 133.51% at 28.36% 45.54%, rgba(255, 143, 80, 0.72) 0%, rgba(255, 143, 80, 0.22) 100%)";
-      --color-card-gradient: linear-gradient(
-         49.21deg,
-         rgba(127, 127, 213, 0.2) 19.87%,
-         rgba(134, 168, 231, 0.2) 58.46%,
-         rgba(145, 234, 228, 0.2) 97.05%
+      /* Gradients */
+      --color-upgrades-gradient: linear-gradient(
+         285.24deg,
+         #f7cbc0 0%,
+         #fbeae3 17.81%,
+         #f4b1ab 29.8%,
+         #8476d9 49.78%,
+         #8db4ff 69.77%
       );
-
-      --color-off-bg: #181818;
-      --color-staking-pill-platform: #cd9df3;
-      --color-staking-pill-ui: #ebd27a;
-      --color-staking-gold: #f2bb2f;
-      --color-staking-gold-fill: #373228;
-      --color-staking-green: #49de96;
-      --color-staking-green-fill: #30342b;
-      --color-staking-blue: #a9d3f2;
-      --color-staking-blue-fill: #2b352f;
-      --color-staking-red: #d6bbb9;
-      --color-staking-red-fill: #313432;
-
-      --color-layer2-gradient: linear-gradient(
-            83.46deg,
-            rgba(127, 127, 213, 0.2) 7.03%,
-            rgba(138, 168, 231, 0.2) 52.42%,
-            rgba(145, 234, 228, 0.2) 98.77%
-         ),
-         #1e1e1e;
-      --color-feed-back-gradient: linear-gradient(83.46deg, #2c2c32 7.03%, #44404d 52.42%, #303038 98.77%);
-      --color-banner-grid-gradient: linear-gradient(
-         90deg,
-         rgba(172, 182, 229, 0.08) 0%,
-         rgba(134, 253, 232, 0.08) 100%
-      );
-      --color-slider-bg: #191919;
-      --color-slider-border: #404040;
-      --color-slider-dot: #a4a4a4;
-      --color-slider-dot-active: #ff7324;
-      --color-slider-btn-bg: #404040;
-      --color-slider-btn-color: white;
-      --color-slider-btn-bg-disabled: #404040;
-      --color-slider-btn-color-disabled: #737373;
    }
 }
