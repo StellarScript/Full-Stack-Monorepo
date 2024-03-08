@@ -1,5 +1,4 @@
 import { auth } from "@clerk/nextjs";
-import { originUrl } from "@appify/utils";
 import { config } from "@appify/config";
 
 const defaultHeaders = {
@@ -8,9 +7,8 @@ const defaultHeaders = {
 
 export async function request(urlPath: string, options?: RequestInit): Promise<Response> {
    const _urlPath = urlPath.startsWith("/") ? urlPath.slice(1) : urlPath;
-   const serverUrl = originUrl(serverPort());
 
-   return await fetch(`${serverUrl}/${_urlPath}`, {
+   return await fetch(`${config.app.serverUrl}/${_urlPath}`, {
       ...options,
       headers: { ...defaultHeaders, ...options?.headers },
    });
@@ -23,12 +21,4 @@ export async function authHeaders(): Promise<Record<string, string>> {
       ...defaultHeaders,
       Authorization: `Bearer ${token}`,
    };
-}
-
-function serverPort(): number {
-   const { serverPort } = config.app;
-   if (!serverPort) {
-      throw new Error("Server port is not specified");
-   }
-   return +serverPort;
 }

@@ -4,7 +4,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 
-import { isProdEnv, originUrl } from '@appify/utils';
+import { isProdEnv } from '@appify/utils';
 import { JwtAuthGuard } from '@guards/auth.guard';
 import { AppModule } from './app/app.module';
 
@@ -17,7 +17,7 @@ async function bootstrap() {
    const configService = app.get(ConfigService);
 
    const port = configService.get<number>('app.serverPort', 3000);
-   const origin = originUrl(port);
+   const origin = configService.get<string>('app.origin', 'http://localhost');
 
    app.use(helmet()); // Apply Helmet for security
    app.use(cookieParser());

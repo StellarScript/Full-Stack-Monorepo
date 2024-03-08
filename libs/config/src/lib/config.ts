@@ -4,7 +4,7 @@ export const config = {
       serverPort: process.env['SERVER_PORT'],
       frontendPort: process.env['FRONTEND_PORT'],
       securePort: process.env['SECURE_PORT'],
-      origin: process.env['ORIGIN'],
+      serverUrl: process.env['SERVER_URL'],
    },
    database: {
       port: process.env['DATABASE_PORT'],
