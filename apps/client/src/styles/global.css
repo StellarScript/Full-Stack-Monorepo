@@ -18,12 +18,14 @@
    --color-mint: #e1fefa;
    --color-mint-dark: #2d3332;
 
+   --color-dark: #1b1b1b;
+   --color-light: #f2f2f2;
+
    /* 
    *
    * Light Mode
    *
    */
-
    /* Primary */
    --color-primary: var(--color-primary-light);
    --color-primary-950: #040426;
@@ -49,6 +51,9 @@
    --color-text-200: #666666;
    --color-text-300: #4c4c4c;
    --color-text-400: #7f7f7f;
+
+   /* Background */
+   --color-background: var(--color-light);
 
    /* Gradients */
    --color-upgrades-gradient: linear-gradient(
@@ -89,6 +94,9 @@
       --color-text-200: #b2b2b2;
       --color-text-300: #cccccc;
       --color-text-400: hsla(0, 0%, 69.8%, 0.8);
+
+      /* Background */
+      --color-background: var(--color-dark);
 
       /* Gradients */
       --color-upgrades-gradient: linear-gradient(

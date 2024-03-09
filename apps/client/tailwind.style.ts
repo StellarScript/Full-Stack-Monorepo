@@ -71,3 +71,16 @@ export const gradients = {
       upgrades: "var(--color-upgrades-gradient)",
    },
 };
+
+export const targetColors = {
+   background: {
+      DEFAULT: "var(--color-background)",
+   },
+
+   dark: {
+      DEFAULT: "var(--color-dark)",
+   },
+   light: {
+      DEFAULT: "var(--color-light)",
+   },
+};
