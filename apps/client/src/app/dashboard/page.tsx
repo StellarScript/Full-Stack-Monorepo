@@ -3,6 +3,7 @@ import { Avatar } from "@components/Avatar";
 
 import { getAccount } from "./actions";
 import { SideBar } from "./components/Sidebar";
+import { ThemeButton } from "../components/themeButton";
 
 const avatarItems = [
    { title: "Account", url: "#" },
@@ -20,13 +21,14 @@ export default async function DashboardPage() {
       <div className="flex flex-col size-full justify-center">
          <header className="w-full border-b-[1px] border-gray-100 p-1 pr-3">
             <div className="md:flex items-center justify-end hidden p-1">
+               <ThemeButton />
                <Avatar imageUrl={user.imageUrl} items={avatarItems} />
             </div>
          </header>
          <SideBar />
          <div className="h-screen ml-[60px]">
-            <div className="size-full bg-gray-100">
-               <h1>Hello</h1>
+            <div className="size-full">
+               <h1 className="text-white">Hello</h1>
             </div>
          </div>
       </div>

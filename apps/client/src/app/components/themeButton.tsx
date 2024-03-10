@@ -2,16 +2,16 @@
 
 import { useTheme } from "@provider/theme";
 
-type ThemeButtonProps = React.PropsWithChildren<{
+type ThemeButtonProps = {
    className?: string;
-}>;
+};
 
-export const ThemeButton: React.FC<ThemeButtonProps> = ({ children, className }) => {
+export const ThemeButton: React.FC<ThemeButtonProps> = ({ className }) => {
    const theme = useTheme();
 
    return (
       <button className={className} onClick={theme.toggle}>
-         {children}
+         {theme.theme ? "light" : "dark"} mode
       </button>
    );
 };

@@ -1,19 +1,14 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-import { cn } from "@utils";
-
-type ThemeProps = React.PropsWithChildren<{
-   className?: string;
-}>;
 
 interface ThemeContextType {
-   theme: string;
+   theme: boolean;
    toggle: () => void;
 }
 
 const initialState: ThemeContextType = {
-   theme: "",
+   theme: false,
    toggle: () => {
       return;
    },
@@ -23,16 +18,18 @@ export const ThemeContext = createContext<ThemeContextType>(initialState);
 
 export const useTheme = (): ThemeContextType => useContext(ThemeContext);
 
-export const ThemeProvider: React.FC<ThemeProps> = ({ children, className }) => {
-   const [theme, setTheme] = useState<string>("");
+export const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
+   const [theme, setTheme] = useState<boolean>(false);
 
    const toggle = () => {
-      setTheme(theme === "dark" ? "" : "dark");
+      setTheme(!theme);
    };
+
+   const themeMode = theme ? "dark" : "";
 
    return (
       <ThemeContext.Provider value={{ theme, toggle }}>
-         <div className={cn(theme, className)}>{children}</div>
+         <div className={themeMode}>{children}</div>
       </ThemeContext.Provider>
    );
 };
