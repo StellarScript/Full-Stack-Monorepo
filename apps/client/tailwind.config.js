@@ -1,6 +1,5 @@
 const { createGlobPatternsForDependencies } = require("@nx/react/tailwind");
 const { join } = require("path");
-const { baseColors, colorSets, gradients, targetColors } = require("./tailwind.style");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -35,12 +34,7 @@ module.exports = {
             lato: ["var(--font-lato)"],
          },
 
-         colors: {
-            ...baseColors,
-            ...colorSets,
-            ...gradients,
-            ...targetColors,
-         },
+         colors: {},
       },
    },
    plugins: [],
