@@ -3,7 +3,7 @@
 import { useTheme } from "@provider/theme";
 
 export const ThemeToggle = () => {
-   const { toggle, theme: currentTheme } = useTheme(); // Assuming `theme` is now `currentTheme` or similar for clarity.
+   const { toggle, theme: currentTheme } = useTheme();
 
    return (
       <button onClick={toggle} className="theme-toggle" aria-label="Toggle theme">
