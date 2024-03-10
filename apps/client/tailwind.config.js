@@ -34,7 +34,24 @@ module.exports = {
             lato: ["var(--font-lato)"],
          },
 
-         colors: {},
+         colors: {
+            highlight: "var(--color-border)",
+            background: "var(--color-background)",
+
+            typography: {
+               DEFAULT: "var(--color-typography)",
+            },
+
+            primary: {
+               DEFAULT: "var(--color-primary)",
+            },
+
+            gray: {
+               100: "var(--color-gray-100)",
+               200: "var(--color-gray-200)",
+               300: "var(--color-gray-300)",
+            },
+         },
       },
    },
    plugins: [],
