@@ -3,9 +3,27 @@
 @tailwind utilities;
 
 :root {
+   /* Base Colors */
+   --color-primary: #0a80ff;
+   --color-gray-100: #e6e6e6;
+   --color-gray-200: hsla(0, 0%, 100%, 0.5);
+   --color-gray-300: #2e3150;
+
+   --color-background: #ffffff;
+   --color-border: var(--color-gray-100);
+   --color-typography: #333333;
+}
+
+.dark {
+   --color-background: #1a2236;
+   --color-border: #293145;
+   --color-typography: hsla(0, 0%, 93%, 0.933);
 }
 
 @layer utilities {
+   /* 
+   * Custom Styles
+   */
    .clip-bottom {
       clip-path: polygon(
          0% 0%,
