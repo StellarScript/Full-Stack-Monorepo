@@ -4,13 +4,14 @@ const { baseColors, colorSets, gradients, targetColors } = require("./tailwind.s
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+   darkMode: "class",
+
    content: [
       join(__dirname, "{src,pages,components,app}/**/*!(*.stories|*.spec).{ts,tsx,html}"),
       ...createGlobPatternsForDependencies(__dirname),
    ],
 
    theme: {
-      darkMode: "class",
       extend: {
          fontSize: {
             xxs: ["0.75rem", { fontWeight: "300" }], // 12px

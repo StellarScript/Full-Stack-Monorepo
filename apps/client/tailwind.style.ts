@@ -75,11 +75,13 @@ export const gradients = {
 export const targetColors = {
    background: {
       DEFAULT: "var(--color-background)",
+      inverse: "var(--color-background-inverse)",
    },
 
    dark: {
       DEFAULT: "var(--color-dark)",
    },
+
    light: {
       DEFAULT: "var(--color-light)",
    },
