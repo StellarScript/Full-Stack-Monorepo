@@ -5,12 +5,11 @@ import { UserModule } from '@modules/user/user.module';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from './strategy/jwt.strategy';
-import { WebhookStrategy } from './strategy/webhook.strategy';
 
 @Module({
    imports: [ConfigModule, UserModule],
    controllers: [AuthController],
-   providers: [AuthService, JwtStrategy, WebhookStrategy],
+   providers: [AuthService, JwtStrategy],
    exports: [AuthService],
 })
 export class AuthModule {

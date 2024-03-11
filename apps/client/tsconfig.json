@@ -22,7 +22,8 @@
          "@appify/config": ["libs/config/src/index.ts"],
          "@appify/utils": ["libs/utils/src/index.ts"],
          "@appify/dto": ["libs/dto/src/index.ts"],
-         "@provider/*": ["apps/client/src/providers/*"]
+         "@provider/*": ["apps/client/src/providers/*"],
+         "@assets/*": ["apps/client/src/assets/*"]
       }
    },
    "include": [

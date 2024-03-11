@@ -25,11 +25,9 @@ export const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) =
       setTheme(!theme);
    };
 
-   const themeMode = theme ? "dark" : "";
-
    return (
       <ThemeContext.Provider value={{ theme, toggle }}>
-         <div className={themeMode}>{children}</div>
+         <html className={theme ? "dark" : ""}>{children}</html>
       </ThemeContext.Provider>
    );
 };

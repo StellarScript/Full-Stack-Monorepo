@@ -2,16 +2,15 @@
 
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { auth } from "@clerk/nextjs";
 
-import { Logo } from "@components/Logo";
-import { Infinity } from "@components/svg/infinity";
+import { Routes } from "@routes";
+import InfinityIllustration from "@assets/infinity";
+import { isAuth } from "./actions";
 
 export default async function Index() {
-   const { user } = await auth();
-
-   if (user) {
-      redirect("/dashboard");
+   const auth = await isAuth();
+   if (auth) {
+      redirect(Routes.DASHBOARD);
    }
 
    return (
@@ -20,12 +19,14 @@ export default async function Index() {
             <header className="container-lg mx-auto">
                <nav className="grid md:grid-cols-2 sm:grid-cols-1 gap-2 md:justify-between sm:justify-center p-4">
                   <div className="w-full text-center md:text-start text-[31px]">
-                     <Logo />
+                     <span className="font-bold w-full leading-[80px] bg-clip-text text-transparent bg-gradient-to-r from-[#ff1a4e] to-[#1a1aff] text-[28px]">
+                        BeLottie
+                     </span>
                   </div>
                   <div className="md:flex items-center justify-end hidden">
                      <Link
-                        href="/"
-                        className="bg-[#2d1fec] text-white px-5 py-2 rounded-md shadow hover:bg-blue-600 transition-colors cursor-pointer"
+                        href={Routes.SIGNIN}
+                        className="bg-primary hover:bg-blue-600 text-white px-5 py-2 rounded-md shadow transition-colors cursor-pointer"
                      >
                         Login
                      </Link>
@@ -60,14 +61,12 @@ export default async function Index() {
                         </div>
                         <div className="flex items-start items-center md:justify-start justify-center">
                            <div className="mr-[60px]">
-                              <div className="py-[20px] bg-primary-light text-[#ffffff] rounded-[12px]">
-                                 <Link
-                                    href="/auth/signup"
-                                    className="text-[18px] leading-[18px] font-normal tracking-[0px] py-[10px] px-[40px]"
-                                 >
-                                    Get Started
-                                 </Link>
-                              </div>
+                              <Link
+                                 href={Routes.SIGNUP}
+                                 className="bg-primary hover:bg-blue-600 text-white text-[18px] leading-[18px] font-normal tracking-[0px] rounded-[12px] py-[20px] px-[40px] transition-all duration-300 ease-in-out"
+                              >
+                                 Get Started
+                              </Link>
                            </div>
                            <div className="flex">
                               <span className="underline">Pricing plans</span>
@@ -76,7 +75,7 @@ export default async function Index() {
                      </div>
                      <div className="flex w-full">
                         <div className="flex w-full justify-center flex-wrap self-stretch relative lg:top-[-5rem] md:top-[-2rem]">
-                           <Infinity className="md:size-[100%] w-[22rem] h-[19rem] max-w-[33rem] max-h-[22rem]" />
+                           <InfinityIllustration className="md:size-[100%] w-[22rem] h-[19rem] max-w-[33rem] max-h-[22rem]" />
                         </div>
                      </div>
                   </div>

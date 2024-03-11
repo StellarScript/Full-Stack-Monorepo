@@ -7,6 +7,7 @@ import {
    IsObject,
    ValidateIf,
 } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class UserSessionDto {
    @IsString()
@@ -38,174 +39,178 @@ export class UserSessionDto {
    sub!: string;
 }
 
-export class EmailAddress {
-   @IsString()
-   @IsNotEmpty()
-   email_address!: string;
-
+export class EmailAccountDto {
    @IsString()
    @IsNotEmpty()
    id!: string;
 
-   @IsArray()
-   @IsNotEmpty()
-   linked_to!: string[];
-
    @IsString()
    @IsNotEmpty()
-   object!: 'email_address';
+   emailAddress!: string;
 
-   @IsBoolean()
-   @IsNotEmpty()
-   reserved!: boolean;
+   @IsArray()
+   verification!: {
+      status: string;
+      strategy: string;
+      externalVerificationRedirectURL: string | null;
+      attempts: number | null;
+      expireAt: number | null;
+      nonce: string | null;
+   }[];
 
    @IsArray()
    @IsNotEmpty()
-   verification!: object[];
+   linkedTo!: string[];
 }
 
-export class CreateUserWebhookDto {
-   @IsBoolean()
-   @IsNotEmpty()
-   backup_code_enabled!: boolean;
-
-   @IsBoolean()
-   @IsNotEmpty()
-   banned!: boolean;
-
-   @IsBoolean()
-   @IsNotEmpty()
-   create_organization_enabled!: boolean;
-
-   @IsNumber()
-   @IsNotEmpty()
-   created_at!: number;
-
-   @IsBoolean()
-   @IsNotEmpty()
-   delete_self_enabled!: boolean;
-
-   @IsArray()
-   @IsNotEmpty()
-   email_addresses!: EmailAddress[];
-
-   @IsArray()
-   external_accounts!: object[];
-
-   @IsString()
-   @ValidateIf((_, value) => value !== null)
-   external_id!: string | null;
-
-   @IsString()
-   @ValidateIf((_, value) => value !== null)
-   first_name!: string | null;
-
-   @IsBoolean()
-   @IsNotEmpty()
-   has_image!: boolean;
-
+export class ExternalAccountDto {
    @IsString()
    @IsNotEmpty()
    id!: string;
 
    @IsString()
-   @IsNotEmpty()
-   image_url!: string;
-
-   @IsNumber()
-   @IsNotEmpty()
-   last_active_at!: number;
+   @ValidateIf((_, value) => value !== undefined)
+   provider?: string;
 
    @IsString()
-   @ValidateIf((_, value) => value !== null)
-   last_name!: string | null;
+   @ValidateIf((_, value) => value !== undefined)
+   identificationId?: string;
 
-   @IsNumber()
-   @ValidateIf((_, value) => value !== null)
-   last_sign_in_at!: number | null;
-
-   @IsBoolean()
-   @IsNotEmpty()
-   locked!: boolean;
-
-   @IsNumber()
-   @ValidateIf((_, value) => value !== null)
-   lockout_expires_in_seconds!: number | null;
+   @IsString()
+   @ValidateIf((_, value) => value !== undefined)
+   externalId?: string;
 
    @IsString()
    @IsNotEmpty()
-   object!: 'user';
-
-   @IsBoolean()
-   @IsNotEmpty()
-   password_enabled!: boolean;
-
-   @IsArray()
-   @IsNotEmpty()
-   phone_numbers!: number[];
+   approvedScopes!: string;
 
    @IsString()
    @IsNotEmpty()
-   primary_email_address_id!: string;
-
-   @IsString()
-   @ValidateIf((_, value) => value !== null)
-   primary_phone_number_id!: string | null;
-
-   @IsString()
-   @ValidateIf((_, value) => value !== null)
-   primary_web3_wallet_id!: string | null;
-
-   @IsObject()
-   private_metadata!: object;
+   emailAddress!: string;
 
    @IsString()
    @IsNotEmpty()
-   profile_image_url!: string;
+   firstName!: string;
 
-   @IsObject()
-   public_metadata!: object;
-
-   @IsArray()
-   saml_accounts!: object[];
-
-   @IsBoolean()
+   @IsString()
    @IsNotEmpty()
-   totp_enabled!: boolean;
+   lastName!: string;
 
-   @IsBoolean()
+   @IsString()
    @IsNotEmpty()
-   two_factor_enabled!: boolean;
-
-   @IsObject()
-   unsafe_metadata!: object;
-
-   @IsNumber()
-   @IsNotEmpty()
-   updated_at!: number;
+   imageUrl!: string;
 
    @IsString()
    @ValidateIf((_, value) => value !== null)
    username!: string | null;
 
-   @IsNumber()
-   @IsNotEmpty()
-   verification_attempts_remaining!: number;
+   @IsObject()
+   publicMetadata!: object;
+
+   @IsString()
+   @ValidateIf((_, value) => value !== null)
+   label!: string | null;
 
    @IsArray()
-   web3_wallets!: object[];
+   verification!: object[];
 }
 
-export class WebhookRequestDto<T = object> {
+export class UserAccountDto {
    @IsString()
    @IsNotEmpty()
-   data!: T;
+   id!: string;
+
+   @IsBoolean()
+   @IsNotEmpty()
+   passwordEnabled!: boolean;
+
+   @IsBoolean()
+   @IsNotEmpty()
+   totpEnabled!: boolean;
+
+   @IsBoolean()
+   @IsNotEmpty()
+   backupCodeEnabled!: boolean;
+
+   @IsBoolean()
+   @IsNotEmpty()
+   twoFactorEnabled!: boolean;
+
+   @IsBoolean()
+   @IsNotEmpty()
+   banned!: boolean;
+
+   @IsNumber()
+   @IsNotEmpty()
+   createdAt!: number;
+
+   @IsNumber()
+   @IsNotEmpty()
+   updatedAt!: number;
 
    @IsString()
    @IsNotEmpty()
-   object!: string;
+   imageUrl!: string;
+
+   @IsBoolean()
+   @IsNotEmpty()
+   hasImage!: boolean;
 
    @IsString()
    @IsNotEmpty()
-   type!: string;
+   primaryEmailAddressId!: string;
+
+   @IsNumber()
+   @ValidateIf((_, value) => value !== null)
+   primaryPhoneNumberId!: number | null;
+
+   @IsNumber()
+   @ValidateIf((_, value) => value !== null)
+   primaryWeb3WalletId!: number | null;
+
+   @IsNumber()
+   @ValidateIf((_, value) => value !== null)
+   lastSignInAt!: number | null;
+
+   @IsNumber()
+   @ValidateIf((_, value) => value !== null)
+   externalId!: number | null;
+
+   @IsString()
+   @ValidateIf((_, value) => value !== null)
+   username!: string | null;
+
+   @IsString()
+   @IsNotEmpty()
+   firstName!: string;
+
+   @IsString()
+   @IsNotEmpty()
+   lastName!: string;
+
+   @IsObject()
+   publicMetadata!: object;
+
+   @IsObject()
+   privateMetadata!: object;
+
+   @IsObject()
+   unsafeMetadata!: object;
+
+   @IsArray()
+   @Type(() => EmailAccountDto)
+   emailAddresses!: EmailAccountDto[];
+
+   @IsArray()
+   phoneNumbers!: number[];
+
+   @IsArray()
+   web3Wallets!: object[];
+
+   @Type(() => ExternalAccountDto)
+   externalAccounts!: ExternalAccountDto;
+
+   @IsBoolean()
+   @IsNotEmpty()
+   createOrganizationEnabled!: boolean;
 }

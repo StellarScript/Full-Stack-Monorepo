@@ -1,36 +1,56 @@
+"use server";
+
+import React from "react";
+import Link from "next/link";
+import dynamic from "next/dynamic";
 import { redirect } from "next/navigation";
+
 import { Avatar } from "@components/Avatar";
+import { Skeleton } from "@components/Skeleton";
 
-import { getAccount } from "./actions";
-import { SideBar } from "./components/Sidebar";
-import { ThemeButton } from "../components/themeButton";
+import { Routes } from "@routes";
+import { SideMenu } from "./components/SideMenu";
+import { ThemeToggle } from "./components/ThemeToggle";
+import { getUserProfile, syncAccount } from "./actions";
 
-const avatarItems = [
-   { title: "Account", url: "#" },
-   { title: "Logout", url: "/auth/logout" },
-];
+const Ullustration = dynamic(() => import("@assets/unselected-illustration"), {
+   loading: () => <Skeleton />,
+});
 
 export default async function DashboardPage() {
-   const user = await getAccount();
+   await syncAccount();
+   const [error, profile] = await getUserProfile();
 
-   if (!user) {
-      redirect("/auth/login");
+   if (error || !profile) {
+      redirect(Routes.SIGNOUT);
    }
 
    return (
-      <div className="flex flex-col size-full justify-center">
-         <header className="w-full border-b-[1px] border-gray-100 p-1 pr-3">
-            <div className="md:flex items-center justify-end hidden p-1">
-               <ThemeButton />
-               <Avatar imageUrl={user.imageUrl} items={avatarItems} />
+      <div className="flex w-full h-screen bg-background transition-all duration-300 ease-in-out overflow-y-hidden">
+         <nav className="flex flex-col py-3 w-[90px] border-r border-highlight transition-all duration-300 ease-in-out">
+            <div className="p-3 text-center">
+               <Link href="/dashboard">
+                  <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#ff1a4e] to-[#1a1aff]">
+                     BeLottie
+                  </span>
+               </Link>
             </div>
-         </header>
-         <SideBar />
-         <div className="h-screen ml-[60px]">
-            <div className="size-full">
-               <h1 className="text-white">Hello</h1>
+
+            <div className="grid gap-1 justify-center pt-12">
+               <SideMenu />
             </div>
-         </div>
+
+            <div className="mt-auto p-3 flex flex-col gap-6 items-center">
+               <ThemeToggle />
+               <Avatar src={profile?.profileImageUrl} />
+            </div>
+         </nav>
+
+         <main className="flex-grow p-6">
+            <div className="flex text-typography justify-center">
+               <Ullustration className="w-[19rem]" />
+            </div>
+         </main>
       </div>
    );
 }

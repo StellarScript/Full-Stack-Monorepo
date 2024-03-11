@@ -10,9 +10,7 @@ datasource db {
 model User {
   id              String   @id
   primaryEmail    String   @unique
-  locked          Boolean  @default(false)
   passwordEnabled Boolean
-  imageUrl        String
   profileImageUrl String
   lastActive      DateTime
   createdAt       DateTime @default(now())
