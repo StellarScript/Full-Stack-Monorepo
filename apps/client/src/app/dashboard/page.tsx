@@ -1,3 +1,5 @@
+"use server";
+
 import React from "react";
 import Link from "next/link";
 import { Avatar } from "@components/Avatar";
@@ -6,15 +8,15 @@ import Ullustration from "@assets/unselected-illustration";
 import { SideMenu } from "./components/SideMenu";
 import { ThemeToggle } from "./components/ThemeToggle";
 
-export default function DashboardPage() {
-   const logoStyle = "font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#ff1a4e] to-[#1a1aff]";
-
+export default async function DashboardPage() {
    return (
       <div className="flex w-full h-screen bg-background transition-all duration-300 ease-in-out overflow-y-hidden">
-         <nav className="flex flex-col py-3 w-[100px] border-r border-highlight transition-all duration-300 ease-in-out">
+         <nav className="flex flex-col py-3 w-[90px] border-r border-highlight transition-all duration-300 ease-in-out">
             <div className="p-3 text-center">
                <Link href="/dashboard">
-                  <span className={logoStyle}>BeLottie</span>
+                  <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#ff1a4e] to-[#1a1aff]">
+                     BeLottie
+                  </span>
                </Link>
             </div>
 

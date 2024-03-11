@@ -1,9 +1,18 @@
 "use server";
 
 import Link from "next/link";
+import { redirect } from "next/navigation";
+
+import { Routes } from "@routes";
 import InfinityIllustration from "@assets/infinity";
+import { isAuth } from "./actions";
 
 export default async function Index() {
+   const auth = await isAuth();
+   if (auth) {
+      redirect(Routes.DASHBOARD);
+   }
+
    return (
       <div className="relative size-full p-0 m-0">
          <div className="bg-white text-gray-800">
@@ -16,7 +25,7 @@ export default async function Index() {
                   </div>
                   <div className="md:flex items-center justify-end hidden">
                      <Link
-                        href="/"
+                        href={Routes.SIGNIN}
                         className="bg-primary hover:bg-blue-600 text-white px-5 py-2 rounded-md shadow transition-colors cursor-pointer"
                      >
                         Login
@@ -53,7 +62,7 @@ export default async function Index() {
                         <div className="flex items-start items-center md:justify-start justify-center">
                            <div className="mr-[60px]">
                               <Link
-                                 href="/auth/signup"
+                                 href={Routes.SIGNUP}
                                  className="bg-primary hover:bg-blue-600 text-white text-[18px] leading-[18px] font-normal tracking-[0px] rounded-[12px] py-[20px] px-[40px] transition-all duration-300 ease-in-out"
                               >
                                  Get Started
