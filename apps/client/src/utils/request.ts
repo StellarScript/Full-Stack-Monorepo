@@ -8,10 +8,14 @@ const defaultHeaders = {
 export async function request(urlPath: string, options?: RequestInit): Promise<Response> {
    const _urlPath = urlPath.startsWith("/") ? urlPath.slice(1) : urlPath;
 
-   return await fetch(`${config.app.serverUrl}/${_urlPath}`, {
-      ...options,
-      headers: { ...defaultHeaders, ...options?.headers },
-   });
+   try {
+      return await fetch(`${config.app.serverUrl}/${_urlPath}`, {
+         ...options,
+         headers: { ...defaultHeaders, ...options?.headers },
+      });
+   } catch (error) {
+      throw new Error(error as string);
+   }
 }
 
 export async function authHeaders(): Promise<Record<string, string>> {

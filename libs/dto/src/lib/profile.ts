@@ -11,5 +11,5 @@ export class PublicProfileDto {
 
    @IsString()
    @IsNotEmpty()
-   imageUrl!: string;
+   profileImageUrl!: string;
 }

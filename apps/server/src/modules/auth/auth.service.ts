@@ -1,13 +1,13 @@
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { UserRepository } from '@modules/user/user.repository';
-import { CreateUserWebhookDto } from '@appify/dto';
+import { UserAccountDto } from '@appify/dto';
 
 @Injectable()
 export class AuthService {
    private readonly logger = new Logger(AuthService.name);
    constructor(private readonly userRepository: UserRepository) {}
 
-   public async signup(data: CreateUserWebhookDto): Promise<void> {
+   public async signup(data: UserAccountDto): Promise<void> {
       try {
          await this.userRepository.createAccount(data);
          this.logger.verbose('User account created successfully.');

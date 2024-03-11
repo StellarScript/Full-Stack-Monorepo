@@ -7,8 +7,13 @@ import Ullustration from "@assets/unselected-illustration";
 
 import { SideMenu } from "./components/SideMenu";
 import { ThemeToggle } from "./components/ThemeToggle";
+import { getUserProfile, syncAccount } from "./actions";
 
 export default async function DashboardPage() {
+   await syncAccount();
+   const res = await getUserProfile();
+   console.log("----", res);
+
    return (
       <div className="flex w-full h-screen bg-background transition-all duration-300 ease-in-out overflow-y-hidden">
          <nav className="flex flex-col py-3 w-[90px] border-r border-highlight transition-all duration-300 ease-in-out">
