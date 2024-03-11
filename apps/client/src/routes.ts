@@ -3,6 +3,7 @@ export enum Routes {
    DASHBOARD = "/dashboard",
    SIGNIN = "/auth/login",
    SIGNUP = "/auth/signup",
+   SIGNOUT = "/auth/logout",
 }
 
 export enum ApiRoutes {
